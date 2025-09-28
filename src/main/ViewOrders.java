@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.event.*;
 
-public class Search extends JFrame {
+public class ViewOrders extends JFrame {
 
-    public Search() {
+    public ViewOrders() {
         initComponents();
     }
 
@@ -70,7 +70,7 @@ public class Search extends JFrame {
         btnSearch.setBackground(new java.awt.Color(255, 51, 51));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearch.setText("Search Best Customer");
+        btnSearch.setText("Delivered Orders");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
@@ -80,7 +80,7 @@ public class Search extends JFrame {
         btnViewOrders.setBackground(new java.awt.Color(255, 51, 51));
         btnViewOrders.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnViewOrders.setForeground(new java.awt.Color(255, 255, 255));
-        btnViewOrders.setText("Search Order Details");
+        btnViewOrders.setText("Processing Orders");
         btnViewOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewOrdersActionPerformed(evt);
@@ -90,7 +90,7 @@ public class Search extends JFrame {
         btnUpdateOrder.setBackground(new java.awt.Color(255, 51, 51));
         btnUpdateOrder.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnUpdateOrder.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdateOrder.setText("Search Customer");
+        btnUpdateOrder.setText("Cancelled Orders");
         btnUpdateOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateOrderActionPerformed(evt);
@@ -112,7 +112,7 @@ public class Search extends JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Search");
+        jLabel2.setText("View Orders");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
