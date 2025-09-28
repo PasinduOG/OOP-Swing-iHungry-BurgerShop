@@ -32,7 +32,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         setTitle("Place Order");
         setResizable(false);
 
-        headerPanel.setBackground(new java.awt.Color(255, 0, 0));
+        headerPanel.setBackground(new java.awt.Color(255, 51, 51));
 
         jLabel1.setBackground(new java.awt.Color(255, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
@@ -57,7 +57,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        mainPanel.setLayout(new java.awt.GridLayout());
+        mainPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

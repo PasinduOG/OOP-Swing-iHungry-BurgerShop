@@ -1,8 +1,8 @@
 package main;
 
-public class SearchBestCustomer extends javax.swing.JFrame {
+public class CancelledOrders extends javax.swing.JFrame {
 
-    public SearchBestCustomer() {
+    public CancelledOrders() {
         initComponents();
     }
 
@@ -26,7 +26,7 @@ public class SearchBestCustomer extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Search Best Customers");
+        jLabel1.setText("Cancelled Orders");
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
@@ -49,17 +49,17 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Customer ID", "Name", "Total"
+                "Order ID", "Customer ID", "Name", "Order QTY", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -127,7 +127,7 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new Search().setVisible(true);
+        new ViewOrders().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

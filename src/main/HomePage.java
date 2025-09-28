@@ -90,11 +90,21 @@ public class HomePage extends JFrame {
         btnViewOrders.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnViewOrders.setForeground(new java.awt.Color(255, 255, 255));
         btnViewOrders.setText("View Orders");
+        btnViewOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewOrdersActionPerformed(evt);
+            }
+        });
 
         btnUpdateOrder.setBackground(new java.awt.Color(255, 51, 51));
         btnUpdateOrder.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnUpdateOrder.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateOrder.setText("Update Order Details");
+        btnUpdateOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateOrderActionPerformed(evt);
+            }
+        });
 
         btnExit.setBackground(new java.awt.Color(255, 51, 51));
         btnExit.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -159,6 +169,16 @@ public class HomePage extends JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnViewOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersActionPerformed
+        this.dispose();
+        new ViewOrders().setVisible(true);
+    }//GEN-LAST:event_btnViewOrdersActionPerformed
+
+    private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
+        this.dispose();
+        new UpdateOrder().setVisible(true);
+    }//GEN-LAST:event_btnUpdateOrderActionPerformed
     
     public static void main(String args[]) {
         FlatMacLightLaf.setup();

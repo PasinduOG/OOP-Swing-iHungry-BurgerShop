@@ -176,17 +176,17 @@ public class ViewOrders extends JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.dispose();
-        new SearchBestCustomer().setVisible(true);
+        new DeliveredOrders().setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersActionPerformed
         this.dispose();
-        new SearchOrder().setVisible(true);
+        new ProcessingOrders().setVisible(true);
     }//GEN-LAST:event_btnViewOrdersActionPerformed
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
         this.dispose();
-        new SearchCustomer().setVisible(true);
+        new CancelledOrders().setVisible(true);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
