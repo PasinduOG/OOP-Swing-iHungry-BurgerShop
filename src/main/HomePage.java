@@ -4,11 +4,14 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.event.*;
+import model.CustomerCollection;
 
 public class HomePage extends JFrame {
+    private CustomerCollection customerCollection;
 
     public HomePage() {
         initComponents();
+        customerCollection=new CustomerCollection();
     }
 
     @SuppressWarnings("unchecked")
@@ -158,7 +161,7 @@ public class HomePage extends JFrame {
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
         this.dispose();
-        new PlaceOrder().setVisible(true);
+        new PlaceOrder(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -177,11 +180,12 @@ public class HomePage extends JFrame {
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
         this.dispose();
-        new UpdateOrder().setVisible(true);
+        new UpdateOrder(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
     
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
+        
         new HomePage().setVisible(true);
     }
 
