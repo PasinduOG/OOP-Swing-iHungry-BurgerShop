@@ -1,8 +1,6 @@
 package main;
 
 import javax.swing.JOptionPane;
-import model.Customer;
-import model.CustomerCollection;
 
 public class PlaceOrder extends javax.swing.JFrame {
     private CustomerCollection customerCollection;
@@ -280,7 +278,7 @@ public class PlaceOrder extends javax.swing.JFrame {
 
     private void btnHomePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomePageActionPerformed
         this.dispose();
-        new HomePage().setVisible(true);
+        new HomePage(customerCollection).setVisible(true);
         
     }//GEN-LAST:event_btnHomePageActionPerformed
 
@@ -304,16 +302,17 @@ public class PlaceOrder extends javax.swing.JFrame {
         }else if(Integer.parseInt(txtQty.getText())==0 || Integer.parseInt(txtQty.getText())<0){
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
         }else{
-            Customer customer=new Customer(orderId, customerId, customerName, orderQty, customerCollection.PROCESSING);
-            customerCollection.addCustomer(customer);
-            JOptionPane.showMessageDialog(this, "Order placed successfully...");
-            clear();
+            Customer customer=new Customer(orderId, customerId, customerName, orderQty, CustomerCollection.PROCESSING);
+            if(customerCollection.addCustomer(customer)){
+                JOptionPane.showMessageDialog(this, "Order placed successfully...");
+                clear();
+            }
         }
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void txtQtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyReleased
         String qty=txtQty.getText();
-        price.setText("LKR "+(double)customerCollection.BURGER_PRICE*Integer.parseInt(qty));
+        price.setText("LKR "+(double)CustomerCollection.BURGER_PRICE*Integer.parseInt(qty));
     }//GEN-LAST:event_txtQtyKeyReleased
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased

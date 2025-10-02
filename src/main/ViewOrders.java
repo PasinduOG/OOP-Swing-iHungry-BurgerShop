@@ -170,8 +170,7 @@ public class ViewOrders extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        this.dispose();
-        new HomePage().setVisible(true);
+        
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

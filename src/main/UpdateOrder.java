@@ -1,10 +1,9 @@
 package main;
 
-import model.CustomerCollection;
-
 public class UpdateOrder extends javax.swing.JFrame {
 
     private CustomerCollection customerCollection;
+    private Customer customer;
 
     public UpdateOrder(CustomerCollection customerCollection) {
         initComponents();
@@ -102,7 +101,7 @@ public class UpdateOrder extends javax.swing.JFrame {
 
         price.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         price.setForeground(new java.awt.Color(255, 51, 51));
-        price.setText("2530.00");
+        price.setText("0");
 
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -207,13 +206,15 @@ public class UpdateOrder extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new HomePage().setVisible(true);
+        new HomePage(customerCollection).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
-        if (customerCollection.searchOrder(txtOrderId.getText())){
-            
-        }
+        this.customer=customerCollection.searchOrder(txtOrderId.getText());
+        txtCustomerId.setText(customer.getCustomerId());
+        txtCustomerName.setText(customer.getCustomerName());
+        txtQty.setText(String.valueOf(customer.getOrderQty()));
+        price.setText(String.valueOf((double)customer.getOrderQty()*CustomerCollection.BURGER_PRICE));
     }//GEN-LAST:event_txtOrderIdKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

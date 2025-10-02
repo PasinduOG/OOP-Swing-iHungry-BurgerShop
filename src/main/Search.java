@@ -5,9 +5,12 @@ import java.awt.*;
 import javax.swing.event.*;
 
 public class Search extends JFrame {
+    
+    private CustomerCollection customerCollection;
 
-    public Search() {
+    public Search(CustomerCollection customerCollection) {
         initComponents();
+        this.customerCollection=customerCollection;
     }
 
     @SuppressWarnings("unchecked")
@@ -171,7 +174,7 @@ public class Search extends JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         this.dispose();
-        new HomePage().setVisible(true);
+        new HomePage(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

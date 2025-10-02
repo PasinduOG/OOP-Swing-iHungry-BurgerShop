@@ -1,4 +1,4 @@
-package model;
+package main;
 
 public class Customer {
     private String orderId;

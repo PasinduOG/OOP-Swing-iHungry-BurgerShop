@@ -4,14 +4,13 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.event.*;
-import model.CustomerCollection;
 
 public class HomePage extends JFrame {
     private CustomerCollection customerCollection;
 
-    public HomePage() {
+    public HomePage(CustomerCollection customerCollection) {
         initComponents();
-        customerCollection=new CustomerCollection();
+        this.customerCollection=customerCollection;
     }
 
     @SuppressWarnings("unchecked")
@@ -166,7 +165,7 @@ public class HomePage extends JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.dispose();
-        new Search().setVisible(true);
+        new Search(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -186,7 +185,8 @@ public class HomePage extends JFrame {
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
         
-        new HomePage().setVisible(true);
+        CustomerCollection customerCollection=new CustomerCollection();
+        new HomePage(customerCollection).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
