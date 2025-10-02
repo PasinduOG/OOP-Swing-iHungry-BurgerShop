@@ -1,8 +1,6 @@
 package main;
 
 import javax.swing.*;
-import java.awt.*;
-import javax.swing.event.*;
 
 public class Search extends JFrame {
     
@@ -179,12 +177,12 @@ public class Search extends JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.dispose();
-        new SearchBestCustomer().setVisible(true);
+        new SearchBestCustomer(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersActionPerformed
         this.dispose();
-        new SearchOrder().setVisible(true);
+        new SearchOrder(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnViewOrdersActionPerformed
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed

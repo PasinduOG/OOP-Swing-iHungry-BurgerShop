@@ -9,10 +9,10 @@ public class CustomerCollection {
 
     private Customer[] customers = new Customer[]{
         new Customer("B0001", "0712345678", "John Smith", 5, 1),
-        new Customer("B0002", "0765423212", "Sarah Johnson", 3, 2),
-        new Customer("B0003", "0778723432", "Mike Wilson", 10, 0),
+        new Customer("B0002", "0765423212", "Sarah Johnson", 3, 1),
+        new Customer("B0003", "0778723432", "Mike Wilson", 10, 1),
         new Customer("B0004", "0717232145", "Emily Davis", 2, 1),
-        new Customer("B0005", "0712345678", "John Smith", 25, 3)
+        new Customer("B0005", "0712345678", "John Smith", 25, 1)
     };
 
     private void extendCustomerArray() {
@@ -85,5 +85,22 @@ public class CustomerCollection {
             }
         }
         return null;
+    }
+    
+    public Customer[] toArray(){
+        Customer[] temp=new Customer[customers.length];
+        for (int i=0; i<customers.length; i++) {
+            temp[i]=customers[i];
+        }
+        return temp;
+    }
+    
+    public boolean searchDuplicateCustomers(Customer[] customerArr,String customerId){
+        for(int i=0; i<customerArr.length; i++){
+            if(customerArr[i].getCustomerId().equals(customerId)){
+                return true;
+            }
+        }
+        return false;
     }
 }

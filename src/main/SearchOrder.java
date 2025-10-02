@@ -1,9 +1,14 @@
 package main;
 
+import java.awt.Color;
+
 public class SearchOrder extends javax.swing.JFrame {
 
-    public SearchOrder() {
+    private CustomerCollection customerCollection;
+
+    public SearchOrder(CustomerCollection customerCollection) {
         initComponents();
+        this.customerCollection = customerCollection;
     }
 
     @SuppressWarnings("unchecked")
@@ -14,18 +19,18 @@ public class SearchOrder extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtOrderId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        customerIdLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        customerNameLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        orderQtyLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        orderTotalLabel = new javax.swing.JLabel();
+        orderStatusLabel = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -54,56 +59,57 @@ public class SearchOrder extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Enter Order ID :");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        txtOrderId.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        txtOrderId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Customer ID :");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("C001");
+        customerIdLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        customerIdLabel.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Name :");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Saman Kumara");
+        customerNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        customerNameLabel.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("QTY :");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("20");
+        orderQtyLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        orderQtyLabel.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Total :");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("7500.00");
+        orderTotalLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        orderTotalLabel.setForeground(new java.awt.Color(0, 0, 0));
+        orderTotalLabel.setText("LKR 0.0");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("pending...");
+        orderStatusLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        orderStatusLabel.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Order Status");
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 51, 51));
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -115,7 +121,7 @@ public class SearchOrder extends javax.swing.JFrame {
                 .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(457, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(99, 99, 99)
@@ -123,27 +129,27 @@ public class SearchOrder extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
+                        .addComponent(customerIdLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6))
+                        .addComponent(customerNameLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel8))
+                        .addComponent(orderQtyLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10))
+                        .addComponent(orderTotalLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11)))
+                        .addComponent(orderStatusLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,29 +158,29 @@ public class SearchOrder extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(customerIdLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(customerNameLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(orderQtyLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(orderTotalLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel11))
+                    .addComponent(orderStatusLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -201,26 +207,60 @@ public class SearchOrder extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        new Search(customerCollection).setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
+        String orderId = txtOrderId.getText();
+
+        if (orderId.isEmpty()) {
+            customerIdLabel.setText("");
+            customerNameLabel.setText("");
+            orderQtyLabel.setText("");
+            orderTotalLabel.setText("LKR 0.0");
+            orderStatusLabel.setText("");
+            return;
+        } else {
+            Customer customer = customerCollection.searchOrder(orderId);
+            if (customer == null) {
+                customerIdLabel.setText("Not Found");
+                customerNameLabel.setText("Not Found");
+                orderQtyLabel.setText("Not Found");
+                orderTotalLabel.setText("LKR 0.0");
+                orderStatusLabel.setText("Not Found");
+            } else {
+                customerIdLabel.setText(customer.getCustomerId());
+                customerIdLabel.setForeground(Color.RED);
+                customerNameLabel.setText(customer.getCustomerName());
+                customerNameLabel.setForeground(Color.RED);
+                orderQtyLabel.setText(String.valueOf(customer.getOrderQty()));
+                orderQtyLabel.setForeground(Color.RED);
+                orderTotalLabel.setText("LKR " + String.valueOf((double) customer.getOrderQty() * CustomerCollection.BURGER_PRICE));
+                orderTotalLabel.setForeground(Color.RED);
+                orderStatusLabel.setText(customerCollection.getStatusNameById(customer.getOrderStatus()));
+                orderStatusLabel.setForeground(Color.RED);
+            }
+        }
+    }//GEN-LAST:event_txtOrderIdKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JLabel customerIdLabel;
+    private javax.swing.JLabel customerNameLabel;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel orderQtyLabel;
+    private javax.swing.JLabel orderStatusLabel;
+    private javax.swing.JLabel orderTotalLabel;
+    private javax.swing.JTextField txtOrderId;
     // End of variables declaration//GEN-END:variables
 }

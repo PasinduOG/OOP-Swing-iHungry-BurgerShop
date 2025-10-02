@@ -2,8 +2,6 @@ package main;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.*;
-import java.awt.*;
-import javax.swing.event.*;
 
 public class HomePage extends JFrame {
     private CustomerCollection customerCollection;

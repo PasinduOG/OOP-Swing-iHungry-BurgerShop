@@ -106,7 +106,7 @@
                       <Component id="txtCustomerName" max="32767" attributes="0"/>
                       <Component id="txtQty" max="32767" attributes="0"/>
                       <Component id="price" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="165" max="-2" attributes="0"/>
+                      <Component id="orderStatusComboBox" min="-2" pref="165" max="-2" attributes="0"/>
                       <Component id="txtOrderId" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtCustomerId" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -126,13 +126,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtOrderId" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtOrderId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="orderStatusComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -176,17 +176,16 @@
             <Property name="text" type="java.lang.String" value="Order Status :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="orderStatusComboBox">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="15" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Pending..."/>
-                <StringItem index="1" value="Processing..."/>
+              <StringArray count="3">
+                <StringItem index="0" value="Cancelled"/>
+                <StringItem index="1" value="Processing"/>
                 <StringItem index="2" value="Delivered"/>
-                <StringItem index="3" value="Cancelled"/>
               </StringArray>
             </Property>
           </Properties>
@@ -290,7 +289,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="0"/>
+            <Property name="text" type="java.lang.String" value="LKR 0.0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
@@ -323,6 +322,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Update Order"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

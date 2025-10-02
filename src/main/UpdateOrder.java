@@ -1,5 +1,7 @@
 package main;
 
+import javax.swing.JOptionPane;
+
 public class UpdateOrder extends javax.swing.JFrame {
 
     private CustomerCollection customerCollection;
@@ -18,7 +20,7 @@ public class UpdateOrder extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        orderStatusComboBox = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtOrderId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -61,8 +63,8 @@ public class UpdateOrder extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Order Status :");
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending...", "Processing...", "Delivered", "Cancelled" }));
+        orderStatusComboBox.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        orderStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cancelled", "Processing", "Delivered" }));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -101,7 +103,7 @@ public class UpdateOrder extends javax.swing.JFrame {
 
         price.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         price.setForeground(new java.awt.Color(255, 51, 51));
-        price.setText("0");
+        price.setText("LKR 0.0");
 
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -117,6 +119,11 @@ public class UpdateOrder extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update Order");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,7 +143,7 @@ public class UpdateOrder extends javax.swing.JFrame {
                     .addComponent(txtCustomerName)
                     .addComponent(txtQty)
                     .addComponent(price)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtOrderId)
                     .addComponent(txtCustomerId))
                 .addGap(402, 402, 402))
@@ -152,12 +159,12 @@ public class UpdateOrder extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(orderStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -210,18 +217,44 @@ public class UpdateOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
-        this.customer=customerCollection.searchOrder(txtOrderId.getText());
+        String orderId=txtOrderId.getText();
+        
+        if (orderId.isEmpty()) {
+            clear();
+            return;
+        }
+        
+        this.customer=customerCollection.searchOrder(orderId);
+        
+        if (this.customer==null) {
+            clear();
+            return;
+        }
+        
+        orderStatusComboBox.setSelectedIndex(customer.getOrderStatus());
         txtCustomerId.setText(customer.getCustomerId());
         txtCustomerName.setText(customer.getCustomerName());
         txtQty.setText(String.valueOf(customer.getOrderQty()));
-        price.setText(String.valueOf((double)customer.getOrderQty()*CustomerCollection.BURGER_PRICE));
+        price.setText("LKR "+String.valueOf((double)customer.getOrderQty()*CustomerCollection.BURGER_PRICE));
     }//GEN-LAST:event_txtOrderIdKeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int qty=Integer.parseInt(txtQty.getText());
+        int status=orderStatusComboBox.getSelectedIndex();
+        
+        if(qty<1){
+            JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
+        }else{
+            customer.setOrderQty(qty);
+            customer.setOrderStatus(status);
+            JOptionPane.showMessageDialog(this, "Order updated successfully...");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -230,10 +263,19 @@ public class UpdateOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> orderStatusComboBox;
     private javax.swing.JLabel price;
     private javax.swing.JTextField txtCustomerId;
     private javax.swing.JTextField txtCustomerName;
     private javax.swing.JTextField txtOrderId;
     private javax.swing.JTextField txtQty;
     // End of variables declaration//GEN-END:variables
+
+    private void clear() {
+        orderStatusComboBox.setSelectedIndex(0);
+        txtCustomerId.setText("");
+        txtCustomerName.setText("");
+        txtQty.setText("");
+        price.setText("LKR 0.0");
+    }
 }

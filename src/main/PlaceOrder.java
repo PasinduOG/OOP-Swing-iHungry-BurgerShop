@@ -3,12 +3,14 @@ package main;
 import javax.swing.JOptionPane;
 
 public class PlaceOrder extends javax.swing.JFrame {
+
     private CustomerCollection customerCollection;
-    
+
     public PlaceOrder(CustomerCollection customerCollection) {
         initComponents();
-        this.customerCollection=customerCollection;
+        this.customerCollection = customerCollection;
         txtOrderId.setText(customerCollection.generateOrderId());
+        price.setText("LKR " + (double) CustomerCollection.BURGER_PRICE * Integer.parseInt(txtQty.getText()));
     }
 
     @SuppressWarnings("unchecked")
@@ -25,11 +27,11 @@ public class PlaceOrder extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         qtyLabel = new javax.swing.JLabel();
         txtQty = new javax.swing.JTextField();
-        orderStatusLabel = new javax.swing.JLabel();
-        orderStatus = new javax.swing.JLabel();
         txtOrderId = new javax.swing.JTextField();
         txtCustomerName = new javax.swing.JTextField();
         customerNameLabel = new javax.swing.JLabel();
+        btnQtyIncrease = new javax.swing.JButton();
+        btnQtyDecrease = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnPlaceOrder = new javax.swing.JButton();
         btnHomePage = new javax.swing.JButton();
@@ -92,20 +94,12 @@ public class PlaceOrder extends javax.swing.JFrame {
         qtyLabel.setText("Burger QTY :");
 
         txtQty.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        txtQty.setText("0");
+        txtQty.setText("1");
         txtQty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtQtyKeyReleased(evt);
             }
         });
-
-        orderStatusLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        orderStatusLabel.setForeground(new java.awt.Color(0, 0, 0));
-        orderStatusLabel.setText("Order Status :");
-
-        orderStatus.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        orderStatus.setForeground(new java.awt.Color(0, 153, 51));
-        orderStatus.setText("Processing");
 
         txtOrderId.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         txtOrderId.setEnabled(false);
@@ -116,42 +110,57 @@ public class PlaceOrder extends javax.swing.JFrame {
         customerNameLabel.setForeground(new java.awt.Color(0, 0, 0));
         customerNameLabel.setText("Customer Name :");
 
+        btnQtyIncrease.setText(">");
+        btnQtyIncrease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQtyIncreaseActionPerformed(evt);
+            }
+        });
+
+        btnQtyDecrease.setText("<");
+        btnQtyDecrease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQtyDecreaseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(qtyLabel)
-                                    .addComponent(orderStatusLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(orderStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(customerIdLabel)
-                                    .addComponent(orderIdLabel)
-                                    .addComponent(customerNameLabel))
-                                .addGap(26, 26, 26)
-                                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                .addGap(46, 46, 46)
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, leftPanelLayout.createSequentialGroup()
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(customerIdLabel)
+                            .addComponent(orderIdLabel)
+                            .addComponent(customerNameLabel))
+                        .addGap(26, 26, 26)
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(leftPanelLayout.createSequentialGroup()
+                                .addComponent(txtCustomerName)
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, leftPanelLayout.createSequentialGroup()
+                        .addComponent(qtyLabel)
+                        .addGap(59, 59, 59)
+                        .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnQtyDecrease)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnQtyIncrease)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(96, 96, 96)
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderIdLabel)
                     .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,17 +172,16 @@ public class PlaceOrder extends javax.swing.JFrame {
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(customerNameLabel)
                     .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(qtyLabel)
-                    .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(orderStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(orderStatusLabel))
-                .addGap(83, 83, 83))
+                    .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnQtyDecrease, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnQtyIncrease)))
+                .addGap(444, 444, 444))
         );
 
         mainPanel.add(leftPanel);
@@ -223,7 +231,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(priceLabel)
@@ -232,12 +240,12 @@ public class PlaceOrder extends javax.swing.JFrame {
                     .addComponent(btnHomePage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPlaceOrder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(btnPlaceOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(btnHomePage, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,7 +255,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(priceLabel)
                     .addComponent(price))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         mainPanel.add(jPanel2);
@@ -268,7 +276,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 414, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -279,56 +287,103 @@ public class PlaceOrder extends javax.swing.JFrame {
     private void btnHomePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomePageActionPerformed
         this.dispose();
         new HomePage(customerCollection).setVisible(true);
-        
+
     }//GEN-LAST:event_btnHomePageActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-        String orderId=customerCollection.generateOrderId();
-        String customerId=txtCustomerId.getText();
+        String orderId = customerCollection.generateOrderId();
+        String customerId = txtCustomerId.getText();
         String customerName;
-        if(customerCollection.isDuplicateCustomer(customerId)){
-            customerName=customerCollection.getDuplicateCustomerName(customerId);
-        }else{
-            customerName=txtCustomerName.getText();
+        if (customerCollection.isDuplicateCustomer(customerId)) {
+            customerName = customerCollection.getDuplicateCustomerName(customerId);
+        } else {
+            customerName = txtCustomerName.getText();
         }
-        int orderQty=Integer.parseInt(txtQty.getText());
-        
-        if(customerId.isEmpty()){
+        int orderQty = Integer.parseInt(txtQty.getText());
+
+        if (customerId.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your phone number...");
-        }else if(!customerCollection.isValidPhoneNumber(customerId)){
+        } else if (!customerCollection.isValidPhoneNumber(customerId)) {
             JOptionPane.showMessageDialog(this, "Please enter your valid phone number...");
-        }else if(customerName.isEmpty()){
+        } else if (customerName.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your name...");
-        }else if(Integer.parseInt(txtQty.getText())==0 || Integer.parseInt(txtQty.getText())<0){
+        } else if (Integer.parseInt(txtQty.getText()) == 0 || Integer.parseInt(txtQty.getText()) < 0) {
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
-        }else{
-            Customer customer=new Customer(orderId, customerId, customerName, orderQty, CustomerCollection.PROCESSING);
-            if(customerCollection.addCustomer(customer)){
+        } else {
+            Customer customer = new Customer(orderId, customerId, customerName, orderQty, CustomerCollection.PROCESSING);
+            if (customerCollection.addCustomer(customer)) {
                 JOptionPane.showMessageDialog(this, "Order placed successfully...");
                 clear();
             }
         }
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
-    private void txtQtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyReleased
-        String qty=txtQty.getText();
-        price.setText("LKR "+(double)CustomerCollection.BURGER_PRICE*Integer.parseInt(qty));
-    }//GEN-LAST:event_txtQtyKeyReleased
-
-    private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
-        if(customerCollection.isDuplicateCustomer(txtCustomerId.getText())){
-            txtCustomerName.setText(customerCollection.getDuplicateCustomerName(txtCustomerId.getText()));
-        }
-    }//GEN-LAST:event_txtCustomerIdKeyReleased
-
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         clear();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void txtQtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyReleased
+        String qty = txtQty.getText();
+
+        if (qty.isEmpty()) {
+            price.setText("LKR 500.0");
+            txtQty.setText("1");
+            return;
+        }
+
+        price.setText("LKR " + (double) CustomerCollection.BURGER_PRICE * Integer.parseInt(qty));
+    }//GEN-LAST:event_txtQtyKeyReleased
+
+    private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
+        String customerId = txtCustomerId.getText();
+
+        if (customerId.isEmpty()) {
+            txtCustomerName.setText("");
+            txtCustomerName.setEditable(true);
+            return;
+        }
+
+        if (customerCollection.isValidPhoneNumber(customerId) && customerCollection.isDuplicateCustomer(customerId)) {
+            txtCustomerName.setText(customerCollection.getDuplicateCustomerName(customerId));
+            txtCustomerName.setEditable(false);
+        } else {
+            txtCustomerName.setText("");
+            txtCustomerName.setEditable(true);
+        }
+    }//GEN-LAST:event_txtCustomerIdKeyReleased
+
+    private void btnQtyDecreaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQtyDecreaseActionPerformed
+        String qtyText=txtQty.getText();
+        if(qtyText.isEmpty()){
+            txtQty.setText("1");
+        }else{
+            int qty=Integer.parseInt(qtyText);
+            if (qty>1) {
+                qty--;
+            }
+            txtQty.setText(String.valueOf(qty));
+        }
+        updateTotal();
+    }//GEN-LAST:event_btnQtyDecreaseActionPerformed
+
+    private void btnQtyIncreaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQtyIncreaseActionPerformed
+        String qtyText=txtQty.getText();
+        if(qtyText.isEmpty()){
+            txtQty.setText("1");
+        }else{
+            int qty=Integer.parseInt(qtyText);
+            qty++;
+            txtQty.setText(String.valueOf(qty));
+        }
+        updateTotal();
+    }//GEN-LAST:event_btnQtyIncreaseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnHomePage;
     private javax.swing.JButton btnPlaceOrder;
+    private javax.swing.JButton btnQtyDecrease;
+    private javax.swing.JButton btnQtyIncrease;
     private javax.swing.JLabel customerIdLabel;
     private javax.swing.JLabel customerNameLabel;
     private javax.swing.JLabel headerLabel;
@@ -338,8 +393,6 @@ public class PlaceOrder extends javax.swing.JFrame {
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel orderIdLabel;
-    private javax.swing.JLabel orderStatus;
-    private javax.swing.JLabel orderStatusLabel;
     private javax.swing.JLabel price;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel qtyLabel;
@@ -353,6 +406,16 @@ public class PlaceOrder extends javax.swing.JFrame {
         txtOrderId.setText(customerCollection.generateOrderId());
         txtCustomerId.setText("");
         txtCustomerName.setText("");
-        txtQty.setText("0");
+        txtQty.setText("1");
+    }
+
+    private void updateTotal() {
+        String qtyText = txtQty.getText();
+        if(qtyText.isEmpty()){
+            price.setText("LKR 0.0");
+            return;
+        }
+        int qty=Integer.parseInt(qtyText);
+        price.setText("LKR "+(double)qty*CustomerCollection.BURGER_PRICE);
     }
 }
