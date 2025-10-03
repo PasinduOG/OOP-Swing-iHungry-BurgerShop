@@ -167,13 +167,13 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="qtyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="txtQty" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="btnQtyDecrease" alignment="3" max="32767" attributes="0"/>
                               <Component id="btnQtyIncrease" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="qtyLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="444" max="-2" attributes="0"/>
                   </Group>

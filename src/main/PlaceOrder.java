@@ -175,12 +175,12 @@ public class PlaceOrder extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(qtyLabel)
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnQtyDecrease, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnQtyIncrease)))
+                        .addComponent(btnQtyIncrease))
+                    .addComponent(qtyLabel))
                 .addGap(444, 444, 444))
         );
 
@@ -406,6 +406,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         txtOrderId.setText(customerCollection.generateOrderId());
         txtCustomerId.setText("");
         txtCustomerName.setText("");
+        price.setText("LKR 500.0");
         txtQty.setText("1");
     }
 

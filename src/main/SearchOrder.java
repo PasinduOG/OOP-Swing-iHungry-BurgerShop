@@ -28,8 +28,8 @@ public class SearchOrder extends javax.swing.JFrame {
         orderQtyLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         orderTotalLabel = new javax.swing.JLabel();
-        orderStatusLabel = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        orderStatusLabel = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,6 +72,7 @@ public class SearchOrder extends javax.swing.JFrame {
 
         customerIdLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         customerIdLabel.setForeground(new java.awt.Color(0, 0, 0));
+        customerIdLabel.setText("--");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -79,6 +80,7 @@ public class SearchOrder extends javax.swing.JFrame {
 
         customerNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         customerNameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        customerNameLabel.setText("--");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -86,6 +88,7 @@ public class SearchOrder extends javax.swing.JFrame {
 
         orderQtyLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         orderQtyLabel.setForeground(new java.awt.Color(0, 0, 0));
+        orderQtyLabel.setText("--");
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -94,14 +97,15 @@ public class SearchOrder extends javax.swing.JFrame {
 
         orderTotalLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         orderTotalLabel.setForeground(new java.awt.Color(0, 0, 0));
-        orderTotalLabel.setText("LKR 0.0");
-
-        orderStatusLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        orderStatusLabel.setForeground(new java.awt.Color(0, 0, 0));
+        orderTotalLabel.setText("LKR --");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Order Status");
+
+        orderStatusLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        orderStatusLabel.setForeground(new java.awt.Color(0, 0, 0));
+        orderStatusLabel.setText("--");
 
         btnBack.setBackground(new java.awt.Color(255, 51, 51));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -216,31 +220,26 @@ public class SearchOrder extends javax.swing.JFrame {
         String orderId = txtOrderId.getText();
 
         if (orderId.isEmpty()) {
-            customerIdLabel.setText("");
-            customerNameLabel.setText("");
-            orderQtyLabel.setText("");
-            orderTotalLabel.setText("LKR 0.0");
-            orderStatusLabel.setText("");
+            customerIdLabel.setText("--");
+            customerNameLabel.setText("--");
+            orderQtyLabel.setText("--");
+            orderTotalLabel.setText("LKR --");
+            orderStatusLabel.setText("--");
             return;
         } else {
             Customer customer = customerCollection.searchOrder(orderId);
             if (customer == null) {
-                customerIdLabel.setText("Not Found");
-                customerNameLabel.setText("Not Found");
-                orderQtyLabel.setText("Not Found");
-                orderTotalLabel.setText("LKR 0.0");
-                orderStatusLabel.setText("Not Found");
+                customerIdLabel.setText("--");
+                customerNameLabel.setText("--");
+                orderQtyLabel.setText("--");
+                orderTotalLabel.setText("LKR --");
+                orderStatusLabel.setText("--");
             } else {
                 customerIdLabel.setText(customer.getCustomerId());
-                customerIdLabel.setForeground(Color.RED);
                 customerNameLabel.setText(customer.getCustomerName());
-                customerNameLabel.setForeground(Color.RED);
                 orderQtyLabel.setText(String.valueOf(customer.getOrderQty()));
-                orderQtyLabel.setForeground(Color.RED);
                 orderTotalLabel.setText("LKR " + String.valueOf((double) customer.getOrderQty() * CustomerCollection.BURGER_PRICE));
-                orderTotalLabel.setForeground(Color.RED);
                 orderStatusLabel.setText(customerCollection.getStatusNameById(customer.getOrderStatus()));
-                orderStatusLabel.setForeground(Color.RED);
             }
         }
     }//GEN-LAST:event_txtOrderIdKeyReleased

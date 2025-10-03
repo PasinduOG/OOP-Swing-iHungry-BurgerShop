@@ -3,20 +3,20 @@ package main;
 import javax.swing.table.DefaultTableModel;
 
 public class SearchBestCustomer extends javax.swing.JFrame {
-    
+
     private CustomerCollection customerCollection;
-    
+
     public SearchBestCustomer(CustomerCollection customerCollection) {
         initComponents();
         this.customerCollection = customerCollection;
         loadBestCustomerData();
     }
-    
+
     private void loadBestCustomerData() {
-        
+
         Customer[] customers = customerCollection.toArray();
         Customer[] bestCustomers = new Customer[0];
-        
+
         for (int i = 0; i < customers.length; i++) {
             if (!customerCollection.searchDuplicateCustomers(bestCustomers, customers[i].getCustomerId())) {
                 Customer[] temp = new Customer[bestCustomers.length + 1];
@@ -24,38 +24,43 @@ public class SearchBestCustomer extends javax.swing.JFrame {
                     temp[j] = bestCustomers[j];
                 }
                 bestCustomers = temp;
-                bestCustomers[bestCustomers.length - 1] = customers[i];
+                bestCustomers[bestCustomers.length - 1] = 
+                        new Customer(customers[i].getOrderId(), 
+                                customers[i].getCustomerId(), 
+                                customers[i].getCustomerName(), 
+                                customers[i].getOrderQty(), 
+                                customers[i].getOrderStatus());
             }
         }
-        
+
         for (int i = 0; i < bestCustomers.length; i++) {
             int qty = 0;
             for (int j = 0; j < customers.length; j++) {
-                if (customers[j].getCustomerId().equals(bestCustomers[i].getCustomerId())) {
+                if (customers[j].getCustomerId().equalsIgnoreCase(bestCustomers[i].getCustomerId())) {
                     qty += customers[j].getOrderQty();
                 }
             }
             bestCustomers[i].setOrderQty(qty);
         }
-        
+
         for (int i = 0; i < bestCustomers.length; i++) {
-            for (int j = 0; j < bestCustomers.length-1; j++) {
-                if(bestCustomers[j].getOrderQty()<bestCustomers[j+1].getOrderQty()){
-                    Customer temp=bestCustomers[j];
-                    bestCustomers[j]=bestCustomers[j+1];
-                    bestCustomers[j+1]=temp;
+            for (int j = 0; j < bestCustomers.length - 1; j++) {
+                if (bestCustomers[j].getOrderQty() < bestCustomers[j + 1].getOrderQty()) {
+                    Customer temp = bestCustomers[j];
+                    bestCustomers[j] = bestCustomers[j + 1];
+                    bestCustomers[j + 1] = temp;
                 }
             }
         }
-        
+
         DefaultTableModel dtm = (DefaultTableModel) bestCustomerTable.getModel();
         dtm.setRowCount(0);
         for (Customer customer : bestCustomers) {
-            Object[] rowData={customer.getCustomerId(),customer.getCustomerName(),(double)customer.getOrderQty()*CustomerCollection.BURGER_PRICE};
+            Object[] rowData = {customer.getCustomerId(), customer.getCustomerName(), (double) customer.getOrderQty() * CustomerCollection.BURGER_PRICE};
             dtm.addRow(rowData);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
