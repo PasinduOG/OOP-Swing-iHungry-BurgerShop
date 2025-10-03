@@ -1,13 +1,14 @@
 package main;
 
 import javax.swing.*;
-import java.awt.*;
-import javax.swing.event.*;
 
 public class ViewOrders extends JFrame {
+    
+    private BurgerCollection burgerCollection;
 
-    public ViewOrders() {
+    public ViewOrders(BurgerCollection burgerCollection) {
         initComponents();
+        this.burgerCollection=burgerCollection;
     }
 
     @SuppressWarnings("unchecked")
@@ -21,7 +22,7 @@ public class ViewOrders extends JFrame {
         btnSearch = new javax.swing.JButton();
         btnViewOrders = new javax.swing.JButton();
         btnUpdateOrder = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -97,13 +98,13 @@ public class ViewOrders extends JFrame {
             }
         });
 
-        btnExit.setBackground(new java.awt.Color(255, 51, 51));
-        btnExit.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setText("Back");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 51, 51));
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -137,7 +138,7 @@ public class ViewOrders extends JFrame {
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addContainerGap(302, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addGap(92, 92, 92)
@@ -159,7 +160,7 @@ public class ViewOrders extends JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdateOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -169,27 +170,28 @@ public class ViewOrders extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        
-    }//GEN-LAST:event_btnExitActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        new HomePage(burgerCollection).setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.dispose();
-        new DeliveredOrders().setVisible(true);
+        new DeliveredOrders(burgerCollection).setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersActionPerformed
         this.dispose();
-        new ProcessingOrders().setVisible(true);
+        new ProcessingOrders(burgerCollection).setVisible(true);
     }//GEN-LAST:event_btnViewOrdersActionPerformed
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
         this.dispose();
-        new CancelledOrders().setVisible(true);
+        new CancelledOrders(burgerCollection).setVisible(true);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdateOrder;
     private javax.swing.JButton btnViewOrders;

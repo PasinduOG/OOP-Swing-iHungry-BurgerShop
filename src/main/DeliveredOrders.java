@@ -1,9 +1,31 @@
 package main;
 
+import javax.swing.table.DefaultTableModel;
+
 public class DeliveredOrders extends javax.swing.JFrame {
 
-    public DeliveredOrders() {
+    private BurgerCollection burgerCollection;
+    
+    public DeliveredOrders(BurgerCollection burgerCollection) {
         initComponents();
+        this.burgerCollection=burgerCollection;
+        loadDeliveredOrders();
+    }
+    
+    private void loadDeliveredOrders(){
+        Burger[] burgers=burgerCollection.toArray();
+        DefaultTableModel dtm=(DefaultTableModel) deliveredOrderTable.getModel();
+        dtm.setRowCount(0);
+        for(int i=0; i<burgers.length; i++){
+            if(burgers[i].getOrderStatus()==BurgerCollection.DELIVERED){
+                Object[] rowData={burgers[i].getOrderId(),
+                    burgers[i].getCustomerId(),
+                    burgers[i].getCustomerName(),
+                    burgers[i].getOrderQty(),
+                    (double)burgers[i].getOrderQty()*BurgerCollection.BURGER_PRICE};
+                dtm.addRow(rowData);
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -14,7 +36,7 @@ public class DeliveredOrders extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        deliveredOrderTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +69,7 @@ public class DeliveredOrders extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        deliveredOrderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -66,8 +88,8 @@ public class DeliveredOrders extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        deliveredOrderTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(deliveredOrderTable);
 
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -127,15 +149,15 @@ public class DeliveredOrders extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new ViewOrders().setVisible(true);
+        new ViewOrders(burgerCollection).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable deliveredOrderTable;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

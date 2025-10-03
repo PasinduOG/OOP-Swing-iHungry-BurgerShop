@@ -270,6 +270,8 @@ public class UpdateOrder extends javax.swing.JFrame {
             txtCustomerName.setText("");
             txtQty.setText("");
             price.setText("LKR --");
+            orderStatusComboBox.setEnabled(true);
+            txtQty.setEnabled(true);
             return;
         }
 
@@ -301,6 +303,9 @@ public class UpdateOrder extends javax.swing.JFrame {
         } else {
             customer.setOrderQty(qty);
             customer.setOrderStatus(status);
+            if(status==BurgerCollection.CANCEL){
+                customer.setOrderQty(0);
+            }
             JOptionPane.showMessageDialog(this, "Order updated successfully...");
             clear();
         }
@@ -349,5 +354,7 @@ public class UpdateOrder extends javax.swing.JFrame {
         price.setText("LKR --");
         alertLabel.setText("");
         alertLabel2.setText("");
+        orderStatusComboBox.setEnabled(true);
+        txtQty.setEnabled(true);
     }
 }
