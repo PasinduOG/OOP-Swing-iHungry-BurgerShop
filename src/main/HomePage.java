@@ -4,11 +4,11 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.*;
 
 public class HomePage extends JFrame {
-    private CustomerCollection customerCollection;
+    private BurgerCollection burgerCollection; //Instance
 
-    public HomePage(CustomerCollection customerCollection) {
+    public HomePage(BurgerCollection burgerCollection) {
         initComponents();
-        this.customerCollection=customerCollection;
+        this.burgerCollection=burgerCollection;
     }
 
     @SuppressWarnings("unchecked")
@@ -158,12 +158,12 @@ public class HomePage extends JFrame {
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
         this.dispose();
-        new PlaceOrder(customerCollection).setVisible(true);
+        new PlaceOrder(burgerCollection).setVisible(true);
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.dispose();
-        new Search(customerCollection).setVisible(true);
+        new Search(burgerCollection).setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -177,14 +177,14 @@ public class HomePage extends JFrame {
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
         this.dispose();
-        new UpdateOrder(customerCollection).setVisible(true);
+        new UpdateOrder(burgerCollection).setVisible(true);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
     
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
         
-        CustomerCollection customerCollection=new CustomerCollection();
-        new HomePage(customerCollection).setVisible(true);
+        BurgerCollection burgerCollection=new BurgerCollection();
+        new HomePage(burgerCollection).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

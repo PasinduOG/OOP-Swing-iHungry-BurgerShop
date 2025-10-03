@@ -4,9 +4,9 @@ import javax.swing.*;
 
 public class Search extends JFrame {
     
-    private CustomerCollection customerCollection;
+    private BurgerCollection customerCollection;
 
-    public Search(CustomerCollection customerCollection) {
+    public Search(BurgerCollection customerCollection) {
         initComponents();
         this.customerCollection=customerCollection;
     }

@@ -1,15 +1,15 @@
 package main;
 
-public class Customer {
+public class Burger {
     private String orderId;
     private String customerId;
     private String customerName;
     private int orderQty;
     private int orderStatus;
     
-    public Customer(){}
+    public Burger(){}
 
-    public Customer(String orderId, String customerId, String customerName, int orderQty, int orderStatus) {
+    public Burger(String orderId, String customerId, String customerName, int orderQty, int orderStatus) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.customerName = customerName;

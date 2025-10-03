@@ -1,22 +1,22 @@
 package main;
 
-public class CustomerCollection {
+public class BurgerCollection {
 
     public static final int BURGER_PRICE = 500;
     public static final int CANCEL = 0;
     public static final int PROCESSING = 1;
     public static final int DELIVERED = 2;
 
-    private Customer[] customers = new Customer[]{
-        new Customer("B0001", "0712345678", "John Smith", 5, 1),
-        new Customer("B0002", "0765423212", "Sarah Johnson", 3, 1),
-        new Customer("B0003", "0778723432", "Mike Wilson", 10, 1),
-        new Customer("B0004", "0717232145", "Emily Davis", 2, 1),
-        new Customer("B0005", "0712345678", "John Smith", 25, 1)
+    private Burger[] customers = new Burger[]{
+        new Burger("B0001", "0712345678", "John Smith", 5, 1),
+        new Burger("B0002", "0765423212", "Sarah Johnson", 3, 1),
+        new Burger("B0003", "0778723432", "Mike Wilson", 10, 1),
+        new Burger("B0004", "0717232145", "Emily Davis", 2, 1),
+        new Burger("B0005", "0712345678", "John Smith", 25, 1)
     };
 
-    private void extendCustomerArray() {
-        Customer[] temp = new Customer[customers.length + 1];
+    private void extendburgerArray() {
+        Burger[] temp = new Burger[customers.length + 1];
         for (int i = 0; i < customers.length; i++) {
             temp[i] = customers[i];
         }
@@ -48,8 +48,8 @@ public class CustomerCollection {
         return "";
     }
 
-    public boolean addCustomer(Customer customer) {
-        extendCustomerArray();
+    public boolean addCustomer(Burger customer) {
+        extendburgerArray();
         customers[customers.length - 1] = customer;
         return true;
     }
@@ -78,8 +78,8 @@ public class CustomerCollection {
         return false;
     }
 
-    public Customer searchOrder(String orderId) {
-        for (Customer customer : customers) {
+    public Burger searchOrder(String orderId) {
+        for (Burger customer : customers) {
             if (orderId.equalsIgnoreCase(customer.getOrderId())) {
                 return customer;
             }
@@ -87,17 +87,17 @@ public class CustomerCollection {
         return null;
     }
     
-    public Customer[] toArray(){
-        Customer[] temp=new Customer[customers.length];
+    public Burger[] toArray(){
+        Burger[] temp=new Burger[customers.length];
         for (int i=0; i<customers.length; i++) {
             temp[i]=customers[i];
         }
         return temp;
     }
     
-    public boolean searchDuplicateCustomers(Customer[] customerArr,String customerId){
-        for(int i=0; i<customerArr.length; i++){
-            if(customerArr[i].getCustomerId().equals(customerId)){
+    public boolean searchDuplicateCustomers(Burger[] burgerArr,String customerId){
+        for(int i=0; i<burgerArr.length; i++){
+            if(burgerArr[i].getCustomerId().equals(customerId)){
                 return true;
             }
         }

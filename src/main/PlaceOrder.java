@@ -4,13 +4,13 @@ import javax.swing.JOptionPane;
 
 public class PlaceOrder extends javax.swing.JFrame {
 
-    private CustomerCollection customerCollection;
+    private BurgerCollection burgerCollection;
 
-    public PlaceOrder(CustomerCollection customerCollection) {
+    public PlaceOrder(BurgerCollection burgerCollection) {
         initComponents();
-        this.customerCollection = customerCollection;
-        txtOrderId.setText(customerCollection.generateOrderId());
-        price.setText("LKR " + (double) CustomerCollection.BURGER_PRICE * Integer.parseInt(txtQty.getText()));
+        this.burgerCollection = burgerCollection;
+        txtOrderId.setText(burgerCollection.generateOrderId());
+        price.setText("LKR " + (double) BurgerCollection.BURGER_PRICE * Integer.parseInt(txtQty.getText()));
     }
 
     @SuppressWarnings("unchecked")
@@ -286,16 +286,16 @@ public class PlaceOrder extends javax.swing.JFrame {
 
     private void btnHomePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomePageActionPerformed
         this.dispose();
-        new HomePage(customerCollection).setVisible(true);
+        new HomePage(burgerCollection).setVisible(true);
 
     }//GEN-LAST:event_btnHomePageActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-        String orderId = customerCollection.generateOrderId();
+        String orderId = burgerCollection.generateOrderId();
         String customerId = txtCustomerId.getText();
         String customerName;
-        if (customerCollection.isDuplicateCustomer(customerId)) {
-            customerName = customerCollection.getDuplicateCustomerName(customerId);
+        if (burgerCollection.isDuplicateCustomer(customerId)) {
+            customerName = burgerCollection.getDuplicateCustomerName(customerId);
         } else {
             customerName = txtCustomerName.getText();
         }
@@ -303,15 +303,15 @@ public class PlaceOrder extends javax.swing.JFrame {
 
         if (customerId.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your phone number...");
-        } else if (!customerCollection.isValidPhoneNumber(customerId)) {
+        } else if (!burgerCollection.isValidPhoneNumber(customerId)) {
             JOptionPane.showMessageDialog(this, "Please enter your valid phone number...");
         } else if (customerName.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your name...");
         } else if (Integer.parseInt(txtQty.getText()) == 0 || Integer.parseInt(txtQty.getText()) < 0) {
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
         } else {
-            Customer customer = new Customer(orderId, customerId, customerName, orderQty, CustomerCollection.PROCESSING);
-            if (customerCollection.addCustomer(customer)) {
+            Burger customer = new Burger(orderId, customerId, customerName, orderQty, BurgerCollection.PROCESSING);
+            if (burgerCollection.addCustomer(customer)) {
                 JOptionPane.showMessageDialog(this, "Order placed successfully...");
                 clear();
             }
@@ -331,7 +331,7 @@ public class PlaceOrder extends javax.swing.JFrame {
             return;
         }
 
-        price.setText("LKR " + (double) CustomerCollection.BURGER_PRICE * Integer.parseInt(qty));
+        price.setText("LKR " + (double) BurgerCollection.BURGER_PRICE * Integer.parseInt(qty));
     }//GEN-LAST:event_txtQtyKeyReleased
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
@@ -343,8 +343,8 @@ public class PlaceOrder extends javax.swing.JFrame {
             return;
         }
 
-        if (customerCollection.isValidPhoneNumber(customerId) && customerCollection.isDuplicateCustomer(customerId)) {
-            txtCustomerName.setText(customerCollection.getDuplicateCustomerName(customerId));
+        if (burgerCollection.isValidPhoneNumber(customerId) && burgerCollection.isDuplicateCustomer(customerId)) {
+            txtCustomerName.setText(burgerCollection.getDuplicateCustomerName(customerId));
             txtCustomerName.setEditable(false);
         } else {
             txtCustomerName.setText("");
@@ -403,7 +403,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void clear() {
-        txtOrderId.setText(customerCollection.generateOrderId());
+        txtOrderId.setText(burgerCollection.generateOrderId());
         txtCustomerId.setText("");
         txtCustomerName.setText("");
         price.setText("LKR 500.0");
@@ -417,6 +417,6 @@ public class PlaceOrder extends javax.swing.JFrame {
             return;
         }
         int qty=Integer.parseInt(qtyText);
-        price.setText("LKR "+(double)qty*CustomerCollection.BURGER_PRICE);
+        price.setText("LKR "+(double)qty*BurgerCollection.BURGER_PRICE);
     }
 }

@@ -4,28 +4,28 @@ import javax.swing.table.DefaultTableModel;
 
 public class SearchBestCustomer extends javax.swing.JFrame {
 
-    private CustomerCollection customerCollection;
+    private BurgerCollection burgerCollection;
 
-    public SearchBestCustomer(CustomerCollection customerCollection) {
+    public SearchBestCustomer(BurgerCollection burgerCollection) {
         initComponents();
-        this.customerCollection = customerCollection;
+        this.burgerCollection = burgerCollection;
         loadBestCustomerData();
     }
 
     private void loadBestCustomerData() {
 
-        Customer[] customers = customerCollection.toArray();
-        Customer[] bestCustomers = new Customer[0];
+        Burger[] customers = burgerCollection.toArray();
+        Burger[] bestCustomers = new Burger[0];
 
         for (int i = 0; i < customers.length; i++) {
-            if (!customerCollection.searchDuplicateCustomers(bestCustomers, customers[i].getCustomerId())) {
-                Customer[] temp = new Customer[bestCustomers.length + 1];
+            if (!burgerCollection.searchDuplicateCustomers(bestCustomers, customers[i].getCustomerId())) {
+                Burger[] temp = new Burger[bestCustomers.length + 1];
                 for (int j = 0; j < bestCustomers.length; j++) {
                     temp[j] = bestCustomers[j];
                 }
                 bestCustomers = temp;
                 bestCustomers[bestCustomers.length - 1] = 
-                        new Customer(customers[i].getOrderId(), 
+                        new Burger(customers[i].getOrderId(), 
                                 customers[i].getCustomerId(), 
                                 customers[i].getCustomerName(), 
                                 customers[i].getOrderQty(), 
@@ -46,7 +46,7 @@ public class SearchBestCustomer extends javax.swing.JFrame {
         for (int i = 0; i < bestCustomers.length; i++) {
             for (int j = 0; j < bestCustomers.length - 1; j++) {
                 if (bestCustomers[j].getOrderQty() < bestCustomers[j + 1].getOrderQty()) {
-                    Customer temp = bestCustomers[j];
+                    Burger temp = bestCustomers[j];
                     bestCustomers[j] = bestCustomers[j + 1];
                     bestCustomers[j + 1] = temp;
                 }
@@ -55,8 +55,8 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
         DefaultTableModel dtm = (DefaultTableModel) bestCustomerTable.getModel();
         dtm.setRowCount(0);
-        for (Customer customer : bestCustomers) {
-            Object[] rowData = {customer.getCustomerId(), customer.getCustomerName(), (double) customer.getOrderQty() * CustomerCollection.BURGER_PRICE};
+        for (Burger customer : bestCustomers) {
+            Object[] rowData = {customer.getCustomerId(), customer.getCustomerName(), (double) customer.getOrderQty() * BurgerCollection.BURGER_PRICE};
             dtm.addRow(rowData);
         }
     }
@@ -182,7 +182,7 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
-        new Search(customerCollection).setVisible(true);
+        new Search(burgerCollection).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

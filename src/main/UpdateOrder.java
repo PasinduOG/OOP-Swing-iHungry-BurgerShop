@@ -4,12 +4,12 @@ import javax.swing.JOptionPane;
 
 public class UpdateOrder extends javax.swing.JFrame {
 
-    private CustomerCollection customerCollection;
-    private Customer customer;
+    private BurgerCollection burgerCollection;
+    private Burger customer;
 
-    public UpdateOrder(CustomerCollection customerCollection) {
+    public UpdateOrder(BurgerCollection burgerCollection) {
         initComponents();
-        this.customerCollection=customerCollection;
+        this.burgerCollection = burgerCollection;
     }
 
     @SuppressWarnings("unchecked")
@@ -243,12 +243,12 @@ public class UpdateOrder extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
-        new HomePage(customerCollection).setVisible(true);
+        new HomePage(burgerCollection).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
-        String orderId=txtOrderId.getText();
-        
+        String orderId = txtOrderId.getText();
+
         if (orderId.isEmpty()) {
             orderStatusComboBox.setSelectedIndex(0);
             txtCustomerId.setText("");
@@ -259,10 +259,10 @@ public class UpdateOrder extends javax.swing.JFrame {
             alertLabel2.setText("");
             return;
         }
-        
-        this.customer=customerCollection.searchOrder(orderId);
-        
-        if (this.customer==null) {
+
+        this.customer = burgerCollection.searchOrder(orderId);
+
+        if (this.customer == null) {
             alertLabel.setText("");
             alertLabel2.setText("");
             orderStatusComboBox.setSelectedIndex(0);
@@ -272,33 +272,33 @@ public class UpdateOrder extends javax.swing.JFrame {
             price.setText("LKR --");
             return;
         }
-        
-        if (this.customer.getOrderStatus()==CustomerCollection.CANCEL) {
+
+        if (this.customer.getOrderStatus() == BurgerCollection.CANCEL) {
             alertLabel.setText("This order has been Cancelled");
             alertLabel2.setText("Sorry, you can not update this order");
             orderStatusComboBox.setEnabled(false);
             txtQty.setEnabled(false);
-        }else if(this.customer.getOrderStatus()==CustomerCollection.DELIVERED){
+        } else if (this.customer.getOrderStatus() == BurgerCollection.DELIVERED) {
             alertLabel.setText("This order has been Delivered");
             alertLabel2.setText("Sorry, you can not update this order");
             orderStatusComboBox.setEnabled(false);
             txtQty.setEnabled(false);
         }
-        
+
         orderStatusComboBox.setSelectedIndex(customer.getOrderStatus());
         txtCustomerId.setText(customer.getCustomerId());
         txtCustomerName.setText(customer.getCustomerName());
         txtQty.setText(String.valueOf(customer.getOrderQty()));
-        price.setText("LKR "+String.valueOf((double)customer.getOrderQty()*CustomerCollection.BURGER_PRICE));
+        price.setText("LKR " + String.valueOf((double) customer.getOrderQty() * BurgerCollection.BURGER_PRICE));
     }//GEN-LAST:event_txtOrderIdKeyReleased
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
-        int qty=Integer.parseInt(txtQty.getText());
-        int status=orderStatusComboBox.getSelectedIndex();
-        
-        if(qty<1){
+        int qty = Integer.parseInt(txtQty.getText());
+        int status = orderStatusComboBox.getSelectedIndex();
+
+        if (qty < 1) {
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
-        }else{
+        } else {
             customer.setOrderQty(qty);
             customer.setOrderStatus(status);
             JOptionPane.showMessageDialog(this, "Order updated successfully...");
@@ -315,7 +315,7 @@ public class UpdateOrder extends javax.swing.JFrame {
             return;
         }
 
-        price.setText("LKR " + (double) CustomerCollection.BURGER_PRICE * Integer.parseInt(qty));
+        price.setText("LKR " + (double) BurgerCollection.BURGER_PRICE * Integer.parseInt(qty));
     }//GEN-LAST:event_txtQtyKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
