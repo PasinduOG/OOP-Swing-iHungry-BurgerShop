@@ -325,7 +325,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     private void txtQtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyReleased
         String qty = txtQty.getText();
 
-        if (qty.isEmpty()) {
+        if (qty.isEmpty() || qty.equals("0")) {
             price.setText("LKR 500.0");
             txtQty.setText("1");
             return;
