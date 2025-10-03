@@ -14,30 +14,30 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
     private void loadBestCustomerData() {
 
-        Burger[] customers = burgerCollection.toArray();
+        Burger[] burgers = burgerCollection.toArray();
         Burger[] bestCustomers = new Burger[0];
 
-        for (int i = 0; i < customers.length; i++) {
-            if (!burgerCollection.searchDuplicateCustomers(bestCustomers, customers[i].getCustomerId())) {
+        for (int i = 0; i < burgers.length; i++) {
+            if (!burgerCollection.searchDuplicateCustomers(bestCustomers, burgers[i].getCustomerId())) {
                 Burger[] temp = new Burger[bestCustomers.length + 1];
                 for (int j = 0; j < bestCustomers.length; j++) {
                     temp[j] = bestCustomers[j];
                 }
                 bestCustomers = temp;
                 bestCustomers[bestCustomers.length - 1] = 
-                        new Burger(customers[i].getOrderId(), 
-                                customers[i].getCustomerId(), 
-                                customers[i].getCustomerName(), 
-                                customers[i].getOrderQty(), 
-                                customers[i].getOrderStatus());
+                        new Burger(burgers[i].getOrderId(), 
+                                burgers[i].getCustomerId(), 
+                                burgers[i].getCustomerName(), 
+                                burgers[i].getOrderQty(), 
+                                burgers[i].getOrderStatus());
             }
         }
 
         for (int i = 0; i < bestCustomers.length; i++) {
             int qty = 0;
-            for (int j = 0; j < customers.length; j++) {
-                if (customers[j].getCustomerId().equalsIgnoreCase(bestCustomers[i].getCustomerId())) {
-                    qty += customers[j].getOrderQty();
+            for (int j = 0; j < burgers.length; j++) {
+                if (burgers[j].getCustomerId().equalsIgnoreCase(bestCustomers[i].getCustomerId())) {
+                    qty += burgers[j].getOrderQty();
                 }
             }
             bestCustomers[i].setOrderQty(qty);
@@ -55,8 +55,8 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
         DefaultTableModel dtm = (DefaultTableModel) bestCustomerTable.getModel();
         dtm.setRowCount(0);
-        for (Burger customer : bestCustomers) {
-            Object[] rowData = {customer.getCustomerId(), customer.getCustomerName(), (double) customer.getOrderQty() * BurgerCollection.BURGER_PRICE};
+        for (Burger burger : bestCustomers) {
+            Object[] rowData = {burger.getCustomerId(), burger.getCustomerName(), (double) burger.getOrderQty() * BurgerCollection.BURGER_PRICE};
             dtm.addRow(rowData);
         }
     }

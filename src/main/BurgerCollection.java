@@ -7,7 +7,7 @@ public class BurgerCollection {
     public static final int PROCESSING = 1;
     public static final int DELIVERED = 2;
 
-    private Burger[] customers = new Burger[]{
+    private Burger[] burgers = new Burger[]{
         new Burger("B0001", "0712345678", "John Smith", 5, 1),
         new Burger("B0002", "0765423212", "Sarah Johnson", 3, 1),
         new Burger("B0003", "0778723432", "Mike Wilson", 10, 1),
@@ -16,18 +16,18 @@ public class BurgerCollection {
     };
 
     private void extendburgerArray() {
-        Burger[] temp = new Burger[customers.length + 1];
-        for (int i = 0; i < customers.length; i++) {
-            temp[i] = customers[i];
+        Burger[] temp = new Burger[burgers.length + 1];
+        for (int i = 0; i < burgers.length; i++) {
+            temp[i] = burgers[i];
         }
-        customers = temp;
+        burgers = temp;
     }
 
     public String generateOrderId() {
-        if (customers.length == 0) {
+        if (burgers.length == 0) {
             return "B0001";
         }
-        String lastOrderId = customers[customers.length - 1].getOrderId();
+        String lastOrderId = burgers[burgers.length - 1].getOrderId();
         int lastOrderIdNum = Integer.parseInt(lastOrderId.substring(1));
         return String.format("B%04d", lastOrderIdNum + 1);
     }
@@ -40,9 +40,9 @@ public class BurgerCollection {
     }
 
     public String getDuplicateCustomerName(String id) {
-        for (int i = 0; i < customers.length; i++) {
-            if (id.equals(customers[i].getCustomerId())) {
-                return customers[i].getCustomerName();
+        for (int i = 0; i < burgers.length; i++) {
+            if (id.equals(burgers[i].getCustomerId())) {
+                return burgers[i].getCustomerName();
             }
         }
         return "";
@@ -50,7 +50,7 @@ public class BurgerCollection {
 
     public boolean addCustomer(Burger customer) {
         extendburgerArray();
-        customers[customers.length - 1] = customer;
+        burgers[burgers.length - 1] = customer;
         return true;
     }
 
@@ -70,8 +70,8 @@ public class BurgerCollection {
     }
 
     public boolean isDuplicateCustomer(String id) {
-        for (int i = 0; i < customers.length; i++) {
-            if (id.equals(customers[i].getCustomerId())) {
+        for (int i = 0; i < burgers.length; i++) {
+            if (id.equals(burgers[i].getCustomerId())) {
                 return true;
             }
         }
@@ -79,18 +79,18 @@ public class BurgerCollection {
     }
 
     public Burger searchOrder(String orderId) {
-        for (Burger customer : customers) {
-            if (orderId.equalsIgnoreCase(customer.getOrderId())) {
-                return customer;
+        for (Burger burgers : burgers) {
+            if (orderId.equalsIgnoreCase(burgers.getOrderId())) {
+                return burgers;
             }
         }
         return null;
     }
     
     public Burger[] toArray(){
-        Burger[] temp=new Burger[customers.length];
-        for (int i=0; i<customers.length; i++) {
-            temp[i]=customers[i];
+        Burger[] temp=new Burger[burgers.length];
+        for (int i=0; i<burgers.length; i++) {
+            temp[i]=burgers[i];
         }
         return temp;
     }

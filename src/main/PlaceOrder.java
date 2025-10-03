@@ -224,7 +224,7 @@ public class PlaceOrder extends javax.swing.JFrame {
 
         price.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         price.setForeground(new java.awt.Color(255, 51, 51));
-        price.setText("LKR 0.0");
+        price.setText("LKR --");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -413,7 +413,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     private void updateTotal() {
         String qtyText = txtQty.getText();
         if(qtyText.isEmpty()){
-            price.setText("LKR 0.0");
+            price.setText("LKR --");
             return;
         }
         int qty=Integer.parseInt(qtyText);
