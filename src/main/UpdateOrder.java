@@ -33,8 +33,8 @@ public class UpdateOrder extends javax.swing.JFrame {
         price = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnUpdateOrder = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        alertLabel = new javax.swing.JLabel();
+        alertLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -44,7 +44,7 @@ public class UpdateOrder extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Search Order Details");
+        jLabel1.setText("Update Order Details");
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
@@ -132,28 +132,35 @@ public class UpdateOrder extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel8.setText("This order has been Cancelled");
+        alertLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        alertLabel.setForeground(new java.awt.Color(255, 0, 51));
 
-        jLabel9.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel9.setText("This order has been Cancelled");
+        alertLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        alertLabel2.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUpdateOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(alertLabel)
+                            .addComponent(alertLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(46, 46, 46)
-                        .addComponent(txtOrderId, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addGap(226, 226, 226))
+                        .addComponent(txtOrderId, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                        .addGap(443, 443, 443))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -172,25 +179,18 @@ public class UpdateOrder extends javax.swing.JFrame {
                                 .addGap(65, 65, 65))
                             .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(336, 336, 336))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnUpdateOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)))
+                .addGap(69, 69, 69)
+                .addComponent(alertLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(alertLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -211,7 +211,7 @@ public class UpdateOrder extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(price))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdateOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -255,12 +255,16 @@ public class UpdateOrder extends javax.swing.JFrame {
             txtCustomerName.setText("");
             txtQty.setText("");
             price.setText("LKR --");
+            alertLabel.setText("");
+            alertLabel2.setText("");
             return;
         }
         
         this.customer=customerCollection.searchOrder(orderId);
         
         if (this.customer==null) {
+            alertLabel.setText("");
+            alertLabel2.setText("");
             orderStatusComboBox.setSelectedIndex(0);
             txtCustomerId.setText("");
             txtCustomerName.setText("");
@@ -270,9 +274,13 @@ public class UpdateOrder extends javax.swing.JFrame {
         }
         
         if (this.customer.getOrderStatus()==CustomerCollection.CANCEL) {
+            alertLabel.setText("This order has been Cancelled");
+            alertLabel2.setText("Sorry, you can not update this order");
             orderStatusComboBox.setEnabled(false);
             txtQty.setEnabled(false);
         }else if(this.customer.getOrderStatus()==CustomerCollection.DELIVERED){
+            alertLabel.setText("This order has been Delivered");
+            alertLabel2.setText("Sorry, you can not update this order");
             orderStatusComboBox.setEnabled(false);
             txtQty.setEnabled(false);
         }
@@ -311,6 +319,8 @@ public class UpdateOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQtyKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alertLabel;
+    private javax.swing.JLabel alertLabel2;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnUpdateOrder;
     private javax.swing.JPanel headerPanel;
@@ -321,8 +331,6 @@ public class UpdateOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> orderStatusComboBox;
     private javax.swing.JLabel price;
@@ -339,5 +347,7 @@ public class UpdateOrder extends javax.swing.JFrame {
         txtCustomerName.setText("");
         txtQty.setText("");
         price.setText("LKR --");
+        alertLabel.setText("");
+        alertLabel2.setText("");
     }
 }
