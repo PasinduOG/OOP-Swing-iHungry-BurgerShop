@@ -77,9 +77,10 @@ OOP-Swing-iHungry-BurgerShop/
 
 ### Prerequisites
 
-- **Java Development Kit (JDK) 8 or higher**
+- **Java Development Kit (JDK) 11 or higher** (Project configured for Java 11)
 - **NetBeans IDE** (recommended for development)
 - **Git** (for version control)
+- **Apache Ant** (for build automation - usually bundled with NetBeans)
 
 ### Installation & Setup
 
@@ -103,6 +104,8 @@ OOP-Swing-iHungry-BurgerShop/
 4. **Run the application:**
    - In NetBeans: Right-click project → Run (or press F6)
    - Or via command line: `ant run`
+   - **Main Class**: `main.HomePage` (automatically configured)
+   - **Application Theme**: Automatically applies FlatMac Light Look & Feel
 
 ### Alternative Setup (Command Line)
 
@@ -135,8 +138,15 @@ This project exemplifies solid OOP principles:
 
 #### 🔄 **Composition & Aggregation**
 - **Component Relationships**: HomePage contains references to various functional components
-- **Collection Management**: BurgerCollection manages multiple Burger instances
+- **Collection Management**: BurgerCollection manages multiple Burger instances using dynamic arrays
 - **UI Components**: Form classes compose multiple Swing components
+- **Data Persistence**: In-memory storage using resizable arrays (no database required)
+
+#### 🏗️ **Custom Data Structures**
+- **Dynamic Array Implementation**: Custom array resizing in BurgerCollection
+- **Sequential ID Generation**: Automatic order ID management
+- **Status Constants**: Defined status codes (CANCEL=0, PROCESSING=1, DELIVERED=2)
+- **Validation Logic**: Built-in phone number and duplicate detection
 
 #### 📋 **Design Patterns**
 - **Model-View Pattern**: Clear separation between data models (Burger) and view components
@@ -145,12 +155,18 @@ This project exemplifies solid OOP principles:
 
 ## 🎮 User Interface Guide
 
+### **Application Startup**
+The application starts with the **HomePage** featuring:
+- 🍔 **Welcome Screen**: "Welcome to Burgers" with burger icon
+- 🎨 **Modern UI**: FlatMac Light theme for contemporary appearance
+- 📱 **Responsive Layout**: Clean, organized button layout
+
 ### **Main Navigation (HomePage)**
-- **Place Order**: Create new customer orders
-- **Search**: Access various search functionalities
-- **View Orders**: Browse all orders in the system
-- **Update Order**: Modify existing order details
-- **Exit**: Close the application
+- **Place Order**: Create new customer orders with phone validation
+- **Search**: Access various search functionalities and analytics
+- **View Orders**: Browse all orders in the system with status filtering
+- **Update Order**: Modify existing order details and quantities
+- **Exit**: Close the application safely
 
 ### **Order Management Workflow**
 1. **Create**: Use "Place Order" to add new orders
@@ -169,6 +185,13 @@ This project exemplifies solid OOP principles:
 - **Processing Orders**: Active orders being prepared
 - **Delivered Orders**: Completed successful orders
 - **Cancelled Orders**: Cancelled or failed orders
+
+### **Business Logic Features**
+- **Fixed Pricing**: LKR 500.00 per burger (configurable via `BurgerCollection.BURGER_PRICE`)
+- **Order ID Generation**: Auto-generated sequential IDs (B0001, B0002, etc.)
+- **Phone Number Validation**: 10-digit Sri Lankan format starting with 0
+- **Duplicate Customer Detection**: Prevents duplicate phone numbers
+- **Dynamic Price Calculation**: Real-time total calculation based on quantity
 
 ## 🧪 Testing & Development
 
@@ -287,10 +310,20 @@ ant dist
 
 ### **Distribution Package**
 When sharing the application:
-1. Include the main JAR file
-2. Include lib/ directory with dependencies
-3. Provide Java runtime requirements
-4. Include basic usage instructions
+1. **Main JAR**: `dist/OOP-iHungry-Swing.jar` (created by `ant jar`)
+2. **Dependencies**: Include `lib/` directory with FlatLaf libraries
+3. **Java Requirements**: JDK/JRE 11 or higher
+4. **Launcher**: Configured with `main.HomePage` as entry point
+5. **Usage Instructions**: Basic operation guide
+
+### **JAR Execution**
+```bash
+# Ensure lib/ directory is in the same folder as the JAR
+java -jar dist/OOP-iHungry-Swing.jar
+
+# Or with explicit classpath
+java -cp "dist/OOP-iHungry-Swing.jar:lib/*" main.HomePage
+```
 
 ## 🎓 Educational Value
 

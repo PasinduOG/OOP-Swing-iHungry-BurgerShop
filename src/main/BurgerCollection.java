@@ -7,13 +7,7 @@ public class BurgerCollection {
     public static final int PROCESSING = 1;
     public static final int DELIVERED = 2;
 
-    private Burger[] burgers = new Burger[]{
-        new Burger("B0001", "0712345678", "John Smith", 5, 1),
-        new Burger("B0002", "0765423212", "Sarah Johnson", 3, 1),
-        new Burger("B0003", "0778723432", "Mike Wilson", 10, 1),
-        new Burger("B0004", "0717232145", "Emily Davis", 2, 1),
-        new Burger("B0005", "0712345678", "John Smith", 25, 1)
-    };
+    private Burger[] burgers = new Burger[0];
 
     private void extendburgerArray() {
         Burger[] temp = new Burger[burgers.length + 1];
