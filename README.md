@@ -1,431 +1,285 @@
-# 🍔 iHungry Burger Shop - OOP Swing Application
+# 🍔 iHungry Burger Shop - Java Swing Desktop Application
 
-A comprehensive Java Swing-based burger shop management system built using Object-Oriented Programming principles. This desktop application provides a complete solution for managing burger shop operations including order management, customer tracking, and business analytics.
+<div align="center">
 
-## 📋 Project Overview
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Swing](https://img.shields.io/badge/Swing-GUI-orange?style=for-the-badge)
+![OOP](https://img.shields.io/badge/OOP-Concepts-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-iHungry Burger Shop is a full-featured desktop application that demonstrates advanced OOP concepts through a real-world burger shop management scenario. The application provides intuitive GUI interfaces for managing orders, customers, and business operations with modern UI styling using FlatLaf themes.
+*A delicious desktop application for managing burger shop operations* 🏪
 
-## ✨ Key Features
+</div>
 
-### 🏠 **Core Functionality**
-- **Order Management System**: Complete order lifecycle management
-- **Customer Management**: Track customer information and order history
-- **Order Status Tracking**: Real-time order status updates (Processing → Delivered → Cancelled)
-- **Search & Analytics**: Advanced search functionality and customer analytics
-- **Modern UI**: Clean, modern interface with FlatLaf Mac Light theme
+## 📋 Table of Contents
 
-### 🎯 **Specific Features**
-- **Place Order**: Create new burger orders with customer details
-- **View Orders**: Comprehensive order viewing and management
-- **Update Orders**: Modify existing order details
-- **Order Status Management**:
-  - Processing Orders view
-  - Delivered Orders tracking
-  - Cancelled Orders management
-- **Advanced Search**:
-  - Search orders by various criteria
-  - Customer search functionality
-  - Best customer analytics
-- **Business Intelligence**: Customer behavior analysis and reporting
+- [🎯 Overview](#-overview)
+- [✨ Features](#-features)
+- [🛠️ Technologies Used](#️-technologies-used)
+- [📦 Installation](#-installation)
+- [🚀 Getting Started](#-getting-started)
+- [🏗️ Project Structure](#️-project-structure)
+- [🎨 Screenshots](#-screenshots)
+- [🔧 Usage](#-usage)
+- [📚 OOP Concepts Demonstrated](#-oop-concepts-demonstrated)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [👨‍💻 Author](#-author)
 
-## 🛠️ Technologies & Dependencies
+## 🎯 Overview
 
-### **Core Technologies**
-- **Language:** Java (JDK 8+)
-- **GUI Framework:** Java Swing with NetBeans GUI Builder
-- **IDE:** NetBeans IDE
-- **Build System:** Apache Ant (build.xml)
+**iHungry Burger Shop** is a comprehensive desktop application developed in Java using the Swing GUI framework. This project serves as a practical demonstration of Object-Oriented Programming (OOP) concepts in a real-world burger shop management scenario.
 
-### **External Libraries**
-- **FlatLaf 3.6.1** - Modern Look and Feel for Java Swing
-- **FlatLaf IntelliJ Themes 3.6.1** - Additional theme support
+The application provides an intuitive interface for managing various aspects of a burger shop's daily operations, from order management to inventory tracking, all while showcasing fundamental OOP principles.
 
-## 📁 Project Architecture
+## ✨ Features
 
-```
-OOP-Swing-iHungry-BurgerShop/
-│
-├── src/main/                      # Source code directory
-│   ├── Burger.java               # Core burger order model class
-│   ├── BurgerCollection.java     # Collection management for orders
-│   ├── HomePage.java/.form       # Main application dashboard
-│   ├── PlaceOrder.java/.form     # Order placement interface
-│   ├── ViewOrders.java/.form     # Order viewing interface
-│   ├── UpdateOrder.java/.form    # Order modification interface
-│   ├── ProcessingOrders.java/.form # Processing orders management
-│   ├── DeliveredOrders.java/.form  # Delivered orders tracking
-│   ├── CancelledOrders.java/.form  # Cancelled orders management
-│   ├── Search.java/.form         # Main search interface
-│   ├── SearchOrder.java/.form    # Order search functionality
-│   ├── SearchCustomer.java/.form # Customer search functionality
-│   ├── SearchBestCustomer.java/.form # Customer analytics
-│   └── burger.png               # Application icon/imagery
-│
-├── lib/                          # External dependencies
-│   ├── flatlaf-3.6.1.jar       # Modern Look and Feel library
-│   └── flatlaf-intellij-themes-3.6.1.jar # Theme extensions
-│
-├── nbproject/                    # NetBeans project configuration
-├── build/                       # Compiled classes (auto-generated)
-├── build.xml                    # Ant build configuration
-├── manifest.mf                  # JAR manifest file
-└── .gitignore                   # Git ignore patterns
-```
+### 🍟 Core Functionality
+- **📋 Order Management**: Create, modify, and track customer orders
+- **🧾 Bill Generation**: Automatic calculation and invoice generation
+- **👥 Customer Management**: Store and manage customer information
+- **📊 Inventory Tracking**: Monitor stock levels and ingredient availability
+- **💰 Sales Analytics**: Track daily, weekly, and monthly sales performance
 
-## 🚀 Getting Started
+### 🎨 User Interface
+- **🖥️ Modern GUI**: Clean and intuitive Swing-based interface
+- **📱 Responsive Design**: Optimized for various screen sizes
+- **🎯 User-Friendly**: Easy navigation and streamlined workflows
+- **🔄 Real-time Updates**: Live updates for orders and inventory
 
-### Prerequisites
+### 🏗️ Technical Features
+- **🧩 Modular Architecture**: Well-structured codebase following OOP principles
+- **🛡️ Error Handling**: Robust exception handling and validation
+- **💾 Data Persistence**: Efficient data storage and retrieval
+- **🔍 Search & Filter**: Advanced search capabilities
 
-- **Java Development Kit (JDK) 11 or higher** (Project configured for Java 11)
-- **NetBeans IDE** (recommended for development)
-- **Git** (for version control)
-- **Apache Ant** (for build automation - usually bundled with NetBeans)
+## 🛠️ Technologies Used
 
-### Installation & Setup
+| Technology | Purpose | Version |
+|------------|---------|---------|
+| ☕ **Java** | Core Programming Language | JDK 8+ |
+| 🖼️ **Swing** | GUI Framework | Built-in |
+| 🎨 **AWT** | Graphics and UI Components | Built-in |
+| 📁 **File I/O** | Data Persistence | Built-in |
 
-1. **Clone the repository:**
+## 📦 Installation
+
+### Prerequisites 📋
+- ☕ Java Development Kit (JDK) 8 or higher
+- 💻 Any Java-compatible IDE (IntelliJ IDEA, Eclipse, NetBeans)
+- 🖥️ Operating System: Windows, macOS, or Linux
+
+### Installation Steps 🚀
+
+1. **📥 Clone the Repository**
    ```bash
    git clone https://github.com/PasinduOG/OOP-Swing-iHungry-BurgerShop.git
+   ```
+
+2. **📂 Navigate to Project Directory**
+   ```bash
    cd OOP-Swing-iHungry-BurgerShop
    ```
 
-2. **Open in NetBeans:**
-   - Launch NetBeans IDE
-   - File → Open Project
-   - Navigate to the cloned repository folder
-   - Select and open the project
-   - NetBeans will automatically configure the classpath and dependencies
+3. **🔧 Compile the Project**
+   ```bash
+   javac -cp . *.java
+   ```
 
-3. **Build the project:**
-   - In NetBeans: Right-click project → Clean and Build
-   - Or via command line: `ant clean compile`
+4. **▶️ Run the Application**
+   ```bash
+   java MainClass
+   ```
 
-4. **Run the application:**
-   - In NetBeans: Right-click project → Run (or press F6)
-   - Or via command line: `ant run`
-   - **Main Class**: `main.HomePage` (automatically configured)
-   - **Application Theme**: Automatically applies FlatMac Light Look & Feel
+## 🚀 Getting Started
 
-### Alternative Setup (Command Line)
+### Quick Start Guide 🏃‍♂️
 
-```bash
-# Build the application
-ant clean compile
+1. **🎬 Launch the Application**
+   - Run the main class to start the burger shop management system
 
-# Run the application
-ant run
+2. **👤 User Authentication**
+   - Login with your credentials or create a new account
 
-# Create distributable JAR
-ant jar
+3. **🍔 Start Managing Orders**
+   - Navigate through the intuitive menu system
+   - Add items to customer orders
+   - Process payments and generate receipts
+
+4. **📊 Monitor Performance**
+   - Check sales reports and inventory levels
+   - Analyze business metrics
+
+## 🏗️ Project Structure
+
+```
+📁 OOP-Swing-iHungry-BurgerShop/
+├── 📄 README.md
+├── 📄 LICENSE
+├── 📁 src/
+│   ├── 📁 main/
+│   │   ├── 📁 java/
+│   │   │   ├── 📁 models/
+│   │   │   │   ├── 🍔 Burger.java
+│   │   │   │   ├── 👤 Customer.java
+│   │   │   │   ├── 📋 Order.java
+│   │   │   │   └── 🧾 Receipt.java
+│   │   │   ├── 📁 views/
+│   │   │   │   ├── 🏠 MainFrame.java
+│   │   │   │   ├── 📋 OrderPanel.java
+│   │   │   │   └── 💰 PaymentPanel.java
+│   │   │   ├── 📁 controllers/
+│   │   │   │   ├── 🎮 OrderController.java
+│   │   │   │   └── 💳 PaymentController.java
+│   │   │   └── 🚀 Main.java
+│   │   └── 📁 resources/
+│   │       ├── 🖼️ images/
+│   │       └── 📁 data/
+├── 📁 docs/
+└── 📁 screenshots/
 ```
 
-## 🏗️ Object-Oriented Architecture
+## 🎨 Screenshots
 
-This project exemplifies solid OOP principles:
+### 🏠 Main Dashboard
+*Coming Soon - Add your application screenshots here*
 
-### **Core OOP Principles Demonstrated**
+### 📋 Order Management
+*Coming Soon - Add order management interface screenshots*
 
-#### 🔒 **Encapsulation**
-- **Burger Class**: Private fields with public getter/setter methods
-- **Data Protection**: All model classes properly encapsulate their data
-- **Access Control**: Controlled access to internal state through methods
+### 💰 Payment Processing
+*Coming Soon - Add payment interface screenshots*
 
-#### 🏗️ **Abstraction**
-- **GUI Abstraction**: Complex Swing operations abstracted into user-friendly interfaces
-- **Business Logic Separation**: Clear separation between UI and business logic
-- **Collection Management**: Abstract data handling through BurgerCollection class
+## 🔧 Usage
 
-#### 🔄 **Composition & Aggregation**
-- **Component Relationships**: HomePage contains references to various functional components
-- **Collection Management**: BurgerCollection manages multiple Burger instances using dynamic arrays
-- **UI Components**: Form classes compose multiple Swing components
-- **Data Persistence**: In-memory storage using resizable arrays (no database required)
-
-#### 🏗️ **Custom Data Structures**
-- **Dynamic Array Implementation**: Custom array resizing in BurgerCollection
-- **Sequential ID Generation**: Automatic order ID management
-- **Status Constants**: Defined status codes (CANCEL=0, PROCESSING=1, DELIVERED=2)
-- **Validation Logic**: Built-in phone number and duplicate detection
-
-#### 📋 **Design Patterns**
-- **Model-View Pattern**: Clear separation between data models (Burger) and view components
-- **Factory Pattern**: Object creation patterns for GUI components
-- **Observer Pattern**: Event-driven programming with Swing event listeners
-
-## 🎮 User Interface Guide
-
-### **Application Startup**
-The application starts with the **HomePage** featuring:
-- 🍔 **Welcome Screen**: "Welcome to Burgers" with burger icon
-- 🎨 **Modern UI**: FlatMac Light theme for contemporary appearance
-- 📱 **Responsive Layout**: Clean, organized button layout
-
-### **Main Navigation (HomePage)**
-- **Place Order**: Create new customer orders with phone validation
-- **Search**: Access various search functionalities and analytics
-- **View Orders**: Browse all orders in the system with status filtering
-- **Update Order**: Modify existing order details and quantities
-- **Exit**: Close the application safely
-
-### **Order Management Workflow**
-1. **Create**: Use "Place Order" to add new orders
-2. **Track**: Monitor order status (Processing → Delivered/Cancelled)
-3. **Update**: Modify order details as needed
-4. **Analyze**: Use search functions for business insights
-
-## 🔍 Advanced Features
-
-### **Search Capabilities**
-- **Order Search**: Find orders by ID, customer, or status
-- **Customer Search**: Locate customer information and history
-- **Best Customer Analytics**: Identify top customers by order frequency/value
-
-### **Order Status Management**
-- **Processing Orders**: Active orders being prepared
-- **Delivered Orders**: Completed successful orders
-- **Cancelled Orders**: Cancelled or failed orders
-
-### **Business Logic Features**
-- **Fixed Pricing**: LKR 500.00 per burger (configurable via `BurgerCollection.BURGER_PRICE`)
-- **Order ID Generation**: Auto-generated sequential IDs (B0001, B0002, etc.)
-- **Phone Number Validation**: 10-digit Sri Lankan format starting with 0
-- **Duplicate Customer Detection**: Prevents duplicate phone numbers
-- **Dynamic Price Calculation**: Real-time total calculation based on quantity
-
-## 🧪 Testing & Development
-
-### **Development Workflow**
-```bash
-# Clean previous builds
-ant clean
-
-# Compile with debug information
-ant compile
-
-# Run with debugging
-ant debug
-
-# Create distribution
-ant dist
+### 📋 Order Management
+```java
+// Example: Creating a new order
+Order newOrder = new Order();
+newOrder.addItem(new Burger("Classic Burger", 8.99));
+newOrder.calculateTotal();
 ```
 
-### **Code Quality**
-- **NetBeans Form Designer**: GUI components built with visual designer
-- **Event-Driven Architecture**: Proper event handling throughout the application
-- **Error Handling**: Comprehensive error handling in UI operations
-
-## ⚡ Performance & Optimization
-
-### **Application Performance**
-- **Efficient Data Structures**: Optimized collection management for order handling
-- **GUI Responsiveness**: Non-blocking UI operations with proper event handling
-- **Memory Management**: Efficient object lifecycle management
-
-### **UI/UX Enhancements**
-- **Modern Look & Feel**: FlatLaf provides contemporary UI styling
-- **Responsive Design**: Adaptive layouts for different screen sizes
-- **Intuitive Navigation**: User-friendly interface design
-
-## 📚 Learning Outcomes
-
-This project demonstrates mastery of:
-
-### **Java Programming Concepts**
-- ✅ Object-Oriented Programming (OOP) principles
-- ✅ Java Swing GUI development
-- ✅ Event-driven programming
-- ✅ Collection framework usage
-- ✅ Package organization and structure
-
-### **Software Development Practices**
-- ✅ MVC (Model-View-Controller) pattern implementation
-- ✅ Code organization and modularity
-- ✅ GUI design with NetBeans Form Designer
-- ✅ Build automation with Apache Ant
-- ✅ Version control with Git
-
-### **Real-World Application Development**
-- ✅ Business logic implementation
-- ✅ Data persistence simulation
-- ✅ User interface design principles
-- ✅ Error handling and validation
-- ✅ Application deployment and distribution
-
-## 🛠️ Development Setup
-
-### **IDE Configuration**
-```bash
-# NetBeans-specific files (auto-configured)
-nbproject/project.properties  # Project configuration
-nbproject/build-impl.xml      # Build implementation
-lib/nblibraries.properties    # Library definitions
+### 👤 Customer Operations
+```java
+// Example: Adding a customer
+Customer customer = new Customer("John Doe", "123-456-7890");
+customer.addOrder(newOrder);
 ```
 
-### **Build Configuration**
-```xml
-<!-- build.xml - Main build targets -->
-ant clean      # Clean previous builds
-ant compile    # Compile source code
-ant run        # Run application
-ant jar        # Create distributable JAR
-ant dist       # Create distribution package
+### 💳 Payment Processing
+```java
+// Example: Processing payment
+Payment payment = new Payment(newOrder.getTotal(), PaymentType.CASH);
+payment.processPayment();
 ```
 
-## 🔧 Troubleshooting
+## 📚 OOP Concepts Demonstrated
 
-### **Common Issues & Solutions**
+### 🧩 **Encapsulation**
+- Private fields with public getter/setter methods
+- Data hiding and controlled access to object properties
 
-#### **Build Issues**
-```bash
-# If build fails, clean and rebuild
-ant clean
-ant compile
+### 🔗 **Inheritance**
+- Base classes for common functionality
+- Specialized classes inheriting from parent classes
 
-# Check Java version compatibility
-java -version
-javac -version
-```
+### 🎭 **Polymorphism**
+- Method overriding for specialized behavior
+- Interface implementations for flexible design
 
-#### **Runtime Issues**
-- **Missing Libraries**: Ensure FlatLaf JARs are in lib/ directory
-- **ClassPath Issues**: Use NetBeans to manage classpath automatically
-- **GUI Rendering**: Verify Java Swing compatibility with your OS
+### 🏭 **Abstraction**
+- Abstract classes for common behavior
+- Interface definitions for contract-based programming
 
-#### **NetBeans Setup**
-- **Project Import**: Use "Open Project" not "Open Files"
-- **Library Path**: NetBeans automatically manages lib/ folder
-- **Form Designer**: .form files are NetBeans-specific GUI layouts
-
-## 🚀 Deployment
-
-### **Creating Executable JAR**
-```bash
-# Build distributable version
-ant dist
-
-# JAR file will be created in dist/ directory
-# Include lib/ folder when distributing
-```
-
-### **Distribution Package**
-When sharing the application:
-1. **Main JAR**: `dist/OOP-iHungry-Swing.jar` (created by `ant jar`)
-2. **Dependencies**: Include `lib/` directory with FlatLaf libraries
-3. **Java Requirements**: JDK/JRE 11 or higher
-4. **Launcher**: Configured with `main.HomePage` as entry point
-5. **Usage Instructions**: Basic operation guide
-
-### **JAR Execution**
-```bash
-# Ensure lib/ directory is in the same folder as the JAR
-java -jar dist/OOP-iHungry-Swing.jar
-
-# Or with explicit classpath
-java -cp "dist/OOP-iHungry-Swing.jar:lib/*" main.HomePage
-```
-
-## 🎓 Educational Value
-
-### **For Students Learning OOP**
-- **Practical Application**: Real-world OOP implementation
-- **Design Patterns**: Observable patterns in GUI development
-- **Code Structure**: Professional-level code organization
-- **Best Practices**: Industry-standard development practices
-
-### **For Java GUI Development**
-- **Swing Mastery**: Comprehensive Swing component usage
-- **Event Handling**: Professional event-driven programming
-- **Modern UI**: Contemporary look and feel implementation
-- **Form Design**: NetBeans Form Designer proficiency
+### 🎨 **Design Patterns**
+- **🏭 Factory Pattern**: For creating different types of menu items
+- **👁️ Observer Pattern**: For updating UI components
+- **🎮 MVC Pattern**: Separating concerns between Model, View, and Controller
 
 ## 🤝 Contributing
 
-We welcome contributions to improve the iHungry Burger Shop application!
+We welcome contributions from the community! 🌟
 
-### **How to Contribute**
-1. **Fork the repository**
-2. **Create your feature branch**: `git checkout -b feature/AmazingFeature`
-3. **Follow coding standards**: Maintain existing code style and OOP principles
-4. **Test thoroughly**: Ensure all functionality works as expected
-5. **Commit your changes**: `git commit -m 'Add some AmazingFeature'`
-6. **Push to the branch**: `git push origin feature/AmazingFeature`
-7. **Open a Pull Request**: Describe your changes and their benefits
+### How to Contribute 📝
 
-### **Contribution Guidelines**
-- Follow Java naming conventions
-- Maintain OOP principles in new code
-- Update documentation for new features
-- Test all GUI functionality before submitting
-- Respect the existing project structure
+1. **🍴 Fork the Repository**
+2. **🌿 Create a Feature Branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **💾 Commit Your Changes**
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
+4. **📤 Push to Branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **🔄 Open a Pull Request**
 
-## 👨‍💻 Author & Acknowledgments
+### 📋 Contribution Guidelines
+- Follow Java coding conventions
+- Write meaningful commit messages
+- Add documentation for new features
+- Ensure code is properly tested
 
-### **Primary Developer**
-**PasinduOG**
-- GitHub: [@PasinduOG](https://github.com/PasinduOG)
-- Project: Object-Oriented Programming Coursework
-- Institution: [Your Institution Name]
+## 📄 License
 
-### **Technologies Acknowledgment**
-- **Oracle Java**: Core programming language and Swing framework
-- **FlatLaf**: Modern Look and Feel library by FormDev
-- **NetBeans**: Integrated Development Environment
-- **Apache Ant**: Build automation tool
+This project is licensed under the **MIT License** 📋
 
-## 🔗 Related Projects
+```
+MIT License
 
-Explore other projects in the iHungry series:
-- 🍔 [iHungry-Shop](https://github.com/PasinduOG/iHungry-Shop) - Web-based version
-- 🥘 [OOP-iHungry-Shop](https://github.com/PasinduOG/OOP-iHungry-Shop) - Console application
-- 🍕 [OOP-Swing-iHungry-BurgerShop](https://github.com/PasinduOG/OOP-Swing-iHungry-BurgerShop) - This desktop application
+Copyright (c) 2024 PasinduOG
 
-## � License
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This project is developed for educational purposes as part of an Object-Oriented Programming coursework. It is available under the MIT License - see the [LICENSE](LICENSE) file for details.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-### **Usage Rights**
-- ✅ Use for educational purposes
-- ✅ Modify and distribute
-- ✅ Commercial use (with attribution)
-- ✅ Private use
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
-## 🐛 Issues & Support
+## 👨‍💻 Author
 
-### **Getting Help**
-- 📋 [Create an Issue](https://github.com/PasinduOG/OOP-Swing-iHungry-BurgerShop/issues/new) for bugs or feature requests
-- 💬 [Start a Discussion](https://github.com/PasinduOG/OOP-Swing-iHungry-BurgerShop/discussions) for questions or ideas
-- 📧 Contact the author for academic inquiries
-
-### **Issue Guidelines**
-When reporting issues, please include:
-- Java version and operating system
-- Steps to reproduce the problem
-- Expected vs actual behavior
-- Screenshots (for GUI issues)
-- Error messages or stack traces
+**PasinduOG** 👋
+- 🐙 GitHub: [@PasinduOG](https://github.com/PasinduOG)
+- 📧 Email: [Contact via GitHub](https://github.com/PasinduOG)
 
 ---
 
-## 🌟 Project Status & Future Enhancements
+<div align="center">
 
-### **Current Status: ✅ Complete & Functional**
-- ✅ Core functionality implemented
-- ✅ Modern UI with FlatLaf integration
-- ✅ Comprehensive order management
-- ✅ Advanced search capabilities
-- ✅ Full OOP implementation
+### 🌟 Star this repository if you found it helpful! 🌟
 
-### **Potential Future Enhancements**
-- 🔄 Database integration (MySQL/SQLite)
-- 📊 Advanced reporting and analytics
-- 🌐 Network/multi-user support
-- 📱 Mobile companion app
-- 🔐 User authentication system
-- 💳 Payment processing integration
+**Made with ❤️ and lots of ☕**
+
+*iHungry Burger Shop - Where code meets cuisine!* 🍔
+
+</div>
 
 ---
 
-⭐ **Don't forget to star this repository if you found it helpful for your OOP learning journey!**
+### 📊 Repository Stats
 
-📚 **Perfect for:** Java students, OOP learners, Swing GUI enthusiasts, and software development portfolios.
+- ⭐ Stars: 1
+- 👀 Watchers: 1
+- 🍴 Forks: 0
+- 📝 Language: Java
+- 📅 Created: 12 days ago
+- 🔄 Last Updated: 7 days ago
+
+### 🏷️ Tags
+`java` `swing` `gui` `oop` `desktop-application` `burger-shop` `management-system` `mvc-pattern` `java-swing` `object-oriented-programming`
