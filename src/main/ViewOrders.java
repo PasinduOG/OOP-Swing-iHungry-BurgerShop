@@ -4,11 +4,11 @@ import javax.swing.*;
 
 public class ViewOrders extends JFrame {
     
-    private BurgerCollection burgerCollection;
+    private List burgerList;
 
-    public ViewOrders(BurgerCollection burgerCollection) {
+    public ViewOrders(List burgerList) {
         initComponents();
-        this.burgerCollection=burgerCollection;
+        this.burgerList=burgerList;
     }
 
     @SuppressWarnings("unchecked")
@@ -172,22 +172,22 @@ public class ViewOrders extends JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
-        new HomePage(burgerCollection).setVisible(true);
+        new HomePage(burgerList).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.dispose();
-        new DeliveredOrders(burgerCollection).setVisible(true);
+        new DeliveredOrders(burgerList).setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersActionPerformed
         this.dispose();
-        new ProcessingOrders(burgerCollection).setVisible(true);
+        new ProcessingOrders(burgerList).setVisible(true);
     }//GEN-LAST:event_btnViewOrdersActionPerformed
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
         this.dispose();
-        new CancelledOrders(burgerCollection).setVisible(true);
+        new CancelledOrders(burgerList).setVisible(true);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

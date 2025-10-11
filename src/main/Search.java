@@ -4,11 +4,11 @@ import javax.swing.*;
 
 public class Search extends JFrame {
     
-    private BurgerCollection burgerCollection;
+    private List burgerList;
 
-    public Search(BurgerCollection burgerCollection) {
+    public Search(List burgerList) {
         initComponents();
-        this.burgerCollection=burgerCollection;
+        this.burgerList=burgerList;
     }
 
     @SuppressWarnings("unchecked")
@@ -172,22 +172,22 @@ public class Search extends JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         this.dispose();
-        new HomePage(burgerCollection).setVisible(true);
+        new HomePage(burgerList).setVisible(true);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.dispose();
-        new SearchBestCustomer(burgerCollection).setVisible(true);
+        new SearchBestCustomer(burgerList).setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersActionPerformed
         this.dispose();
-        new SearchOrder(burgerCollection).setVisible(true);
+        new SearchOrder(burgerList).setVisible(true);
     }//GEN-LAST:event_btnViewOrdersActionPerformed
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
         this.dispose();
-        new SearchCustomer(burgerCollection).setVisible(true);
+        new SearchCustomer(burgerList).setVisible(true);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

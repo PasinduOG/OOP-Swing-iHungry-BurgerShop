@@ -1,14 +1,12 @@
 package main;
 
-import java.awt.Color;
-
 public class SearchOrder extends javax.swing.JFrame {
 
-    private BurgerCollection burgerCollection;
+    private List burgerList;
 
-    public SearchOrder(BurgerCollection burgerCollection) {
+    public SearchOrder(List burgerList) {
         initComponents();
-        this.burgerCollection = burgerCollection;
+        this.burgerList = burgerList;
     }
 
     @SuppressWarnings("unchecked")
@@ -213,7 +211,7 @@ public class SearchOrder extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
-        new Search(burgerCollection).setVisible(true);
+        new Search(burgerList).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
@@ -225,21 +223,20 @@ public class SearchOrder extends javax.swing.JFrame {
             orderQtyLabel.setText("--");
             orderTotalLabel.setText("LKR --");
             orderStatusLabel.setText("--");
-            return;
         } else {
-            Burger customer = burgerCollection.searchOrder(orderId);
-            if (customer == null) {
+            Burger burger = burgerList.searchOrder(orderId);
+            if (burger == null) {
                 customerIdLabel.setText("--");
                 customerNameLabel.setText("--");
                 orderQtyLabel.setText("--");
                 orderTotalLabel.setText("LKR --");
                 orderStatusLabel.setText("--");
             } else {
-                customerIdLabel.setText(customer.getCustomerId());
-                customerNameLabel.setText(customer.getCustomerName());
-                orderQtyLabel.setText(String.valueOf(customer.getOrderQty()));
-                orderTotalLabel.setText("LKR " + String.valueOf((double) customer.getOrderQty() * BurgerCollection.BURGER_PRICE));
-                orderStatusLabel.setText(burgerCollection.getStatusNameById(customer.getOrderStatus()));
+                customerIdLabel.setText(burger.getCustomerId());
+                customerNameLabel.setText(burger.getCustomerName());
+                orderQtyLabel.setText(String.valueOf(burger.getOrderQty()));
+                orderTotalLabel.setText("LKR " + String.valueOf((double) burger.getOrderQty() * Burger.BURGER_PRICE));
+                orderStatusLabel.setText(burgerList.getStatusNameById(burger.getOrderStatus()));
             }
         }
     }//GEN-LAST:event_txtOrderIdKeyReleased

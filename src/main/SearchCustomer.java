@@ -4,11 +4,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class SearchCustomer extends javax.swing.JFrame {
 
-    private BurgerCollection burgerCollection;
+    private List burgerList;
 
-    public SearchCustomer(BurgerCollection burgerCollection) {
+    public SearchCustomer(List burgerList) {
         initComponents();
-        this.burgerCollection = burgerCollection;
+        this.burgerList = burgerList;
     }
 
     @SuppressWarnings("unchecked")
@@ -219,7 +219,7 @@ public class SearchCustomer extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
-        new Search(burgerCollection).setVisible(true);
+        new Search(burgerList).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
@@ -230,14 +230,14 @@ public class SearchCustomer extends javax.swing.JFrame {
             return;
         }
 
-        Burger[] burgers = burgerCollection.toArray();
+        Burger[] burgers = burgerList.toArray();
         DefaultTableModel dtm = (DefaultTableModel) orderDetailsTable.getModel();
         dtm.setRowCount(0);
         boolean isFound = false;
         for (int i = 0; i < burgers.length; i++) {
             if (customerId.equals(burgers[i].getCustomerId())) {
                 customerNameLabel.setText(burgers[i].getCustomerName());
-                Object[] rowData = {burgers[i].getOrderId(), burgers[i].getOrderQty(), (double) burgers[i].getOrderQty() * BurgerCollection.BURGER_PRICE};
+                Object[] rowData = {burgers[i].getOrderId(), burgers[i].getOrderQty(), (double) burgers[i].getOrderQty() * Burger.BURGER_PRICE};
                 dtm.addRow(rowData);
                 isFound = true;
             }

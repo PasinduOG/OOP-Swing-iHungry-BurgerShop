@@ -1,15 +1,17 @@
 package main;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class UpdateOrder extends javax.swing.JFrame {
 
-    private BurgerCollection burgerCollection;
+    private List burgerList;
     private Burger customer;
 
-    public UpdateOrder(BurgerCollection burgerCollection) {
+    public UpdateOrder(List burgerList) {
         initComponents();
-        this.burgerCollection = burgerCollection;
+        this.burgerList = burgerList;
     }
 
     @SuppressWarnings("unchecked")
@@ -243,7 +245,7 @@ public class UpdateOrder extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
-        new HomePage(burgerCollection).setVisible(true);
+        new HomePage(burgerList).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
@@ -260,7 +262,7 @@ public class UpdateOrder extends javax.swing.JFrame {
             return;
         }
 
-        this.customer = burgerCollection.searchOrder(orderId);
+        this.customer = burgerList.searchOrder(orderId);
 
         if (this.customer == null) {
             alertLabel.setText("");
@@ -275,12 +277,12 @@ public class UpdateOrder extends javax.swing.JFrame {
             return;
         }
 
-        if (this.customer.getOrderStatus() == BurgerCollection.CANCEL) {
+        if (this.customer.getOrderStatus() == Burger.CANCEL) {
             alertLabel.setText("This order has been Cancelled");
             alertLabel2.setText("Sorry, you can not update this order");
             orderStatusComboBox.setEnabled(false);
             txtQty.setEnabled(false);
-        } else if (this.customer.getOrderStatus() == BurgerCollection.DELIVERED) {
+        } else if (this.customer.getOrderStatus() == Burger.DELIVERED) {
             alertLabel.setText("This order has been Delivered");
             alertLabel2.setText("Sorry, you can not update this order");
             orderStatusComboBox.setEnabled(false);
@@ -291,7 +293,7 @@ public class UpdateOrder extends javax.swing.JFrame {
         txtCustomerId.setText(customer.getCustomerId());
         txtCustomerName.setText(customer.getCustomerName());
         txtQty.setText(String.valueOf(customer.getOrderQty()));
-        price.setText("LKR " + String.valueOf((double) customer.getOrderQty() * BurgerCollection.BURGER_PRICE));
+        price.setText("LKR " + String.valueOf((double) customer.getOrderQty() * Burger.BURGER_PRICE));
     }//GEN-LAST:event_txtOrderIdKeyReleased
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
@@ -303,11 +305,25 @@ public class UpdateOrder extends javax.swing.JFrame {
         } else {
             customer.setOrderQty(qty);
             customer.setOrderStatus(status);
-            if(status==BurgerCollection.CANCEL){
+            if (status == Burger.CANCEL) {
                 customer.setOrderQty(0);
             }
-            JOptionPane.showMessageDialog(this, "Order updated successfully...");
-            clear();
+            try {
+                FileWriter fileWriter = new FileWriter("Burger.txt"); 
+                Burger[] burgerArr = burgerList.toArray();
+                for (Burger burger : burgerArr) {
+                    fileWriter.write(burger.getOrderId() + "," + burger.getCustomerId() + ","
+                            + burger.getCustomerName() + "," + burger.getOrderQty() + ","
+                            + burger.getOrderStatus() + "\n");
+                }
+                fileWriter.flush();
+                fileWriter.close();
+                JOptionPane.showMessageDialog(this, "Order updated successfully...");
+                clear();
+            } catch (IOException ex) {
+                
+            }
+
         }
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
 
@@ -320,7 +336,7 @@ public class UpdateOrder extends javax.swing.JFrame {
             return;
         }
 
-        price.setText("LKR " + (double) BurgerCollection.BURGER_PRICE * Integer.parseInt(qty));
+        price.setText("LKR " + (double) Burger.BURGER_PRICE * Integer.parseInt(qty));
     }//GEN-LAST:event_txtQtyKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,25 +4,25 @@ import javax.swing.table.DefaultTableModel;
 
 public class ProcessingOrders extends javax.swing.JFrame {
 
-    private BurgerCollection burgerCollection;
+    private List burgerList;
     
-    public ProcessingOrders(BurgerCollection burgerCollection) {
+    public ProcessingOrders(List burgerList) {
         initComponents();
-        this.burgerCollection=burgerCollection;
+        this.burgerList=burgerList;
         loadProcessingOrders();
     }
     
     private void loadProcessingOrders(){
-        Burger[] burgers=burgerCollection.toArray();
+        Burger[] burgers=burgerList.toArray();
         DefaultTableModel dtm=(DefaultTableModel) processingOrderTable.getModel();
         dtm.setRowCount(0);
         for(int i=0; i<burgers.length; i++){
-            if(burgers[i].getOrderStatus()==BurgerCollection.PROCESSING){
+            if(burgers[i].getOrderStatus()==Burger.PROCESSING){
                 Object[] rowData={burgers[i].getOrderId(),
                     burgers[i].getCustomerId(),
                     burgers[i].getCustomerName(),
                     burgers[i].getOrderQty(),
-                    (double)burgers[i].getOrderQty()*BurgerCollection.BURGER_PRICE};
+                    (double)burgers[i].getOrderQty()*Burger.BURGER_PRICE};
                 dtm.addRow(rowData);
             }
         }
@@ -149,7 +149,7 @@ public class ProcessingOrders extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new ViewOrders(burgerCollection).setVisible(true);
+        new ViewOrders(burgerList).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

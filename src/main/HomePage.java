@@ -1,14 +1,39 @@
 package main;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.*;
 
 public class HomePage extends JFrame {
-    private BurgerCollection burgerCollection; //Instance
 
-    public HomePage(BurgerCollection burgerCollection) {
+    private List burgerList; //Instance
+
+    public HomePage(List burgerList) {
         initComponents();
-        this.burgerCollection=burgerCollection;
+        this.burgerList = burgerList;
+    }
+
+    public void loadDataToList() {
+        try (FileReader fileReader = new FileReader("Burger.txt"); BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] rowData = line.split(",");
+                Burger burger = new Burger(
+                        rowData[0],
+                        rowData[1],
+                        rowData[2],
+                        Integer.parseInt(rowData[3]),
+                        Integer.parseInt(rowData[4])
+                );
+                burgerList.addBurger(burger);
+            }
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -158,12 +183,12 @@ public class HomePage extends JFrame {
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
         this.dispose();
-        new PlaceOrder(burgerCollection).setVisible(true);
+        new PlaceOrder(burgerList).setVisible(true);
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.dispose();
-        new Search(burgerCollection).setVisible(true);
+        new Search(burgerList).setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -172,19 +197,20 @@ public class HomePage extends JFrame {
 
     private void btnViewOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersActionPerformed
         this.dispose();
-        new ViewOrders(burgerCollection).setVisible(true);
+        new ViewOrders(burgerList).setVisible(true);
     }//GEN-LAST:event_btnViewOrdersActionPerformed
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
         this.dispose();
-        new UpdateOrder(burgerCollection).setVisible(true);
+        new UpdateOrder(burgerList).setVisible(true);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
-    
+
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
-        
-        BurgerCollection burgerCollection=new BurgerCollection();
-        new HomePage(burgerCollection).setVisible(true);
+
+        List burgerList = new List(100, 0.5);
+        burgerList.loadDataFromFile("Burger.txt");
+        new HomePage(burgerList).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

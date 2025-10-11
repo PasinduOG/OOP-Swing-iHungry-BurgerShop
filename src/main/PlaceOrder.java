@@ -1,16 +1,18 @@
 package main;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class PlaceOrder extends javax.swing.JFrame {
 
-    private BurgerCollection burgerCollection;
+    private List burgerList;
 
-    public PlaceOrder(BurgerCollection burgerCollection) {
+    public PlaceOrder(List burgerList) {
         initComponents();
-        this.burgerCollection = burgerCollection;
-        txtOrderId.setText(burgerCollection.generateOrderId());
-        price.setText("LKR " + (double) BurgerCollection.BURGER_PRICE * Integer.parseInt(txtQty.getText()));
+        this.burgerList = burgerList;
+        txtOrderId.setText(burgerList.generateOrderId());
+        price.setText("LKR " + (double) Burger.BURGER_PRICE * Integer.parseInt(txtQty.getText()));
     }
 
     @SuppressWarnings("unchecked")
@@ -286,34 +288,42 @@ public class PlaceOrder extends javax.swing.JFrame {
 
     private void btnHomePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomePageActionPerformed
         this.dispose();
-        new HomePage(burgerCollection).setVisible(true);
+        new HomePage(burgerList).setVisible(true);
 
     }//GEN-LAST:event_btnHomePageActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-        String orderId = burgerCollection.generateOrderId();
+        String orderId = burgerList.generateOrderId();
         String customerId = txtCustomerId.getText();
         String customerName;
-        if (burgerCollection.isDuplicateCustomer(customerId)) {
-            customerName = burgerCollection.getDuplicateCustomerName(customerId);
+        if (burgerList.isDuplicateCustomer(customerId)) {
+            customerName = burgerList.getDuplicateCustomerName(customerId);
         } else {
             customerName = txtCustomerName.getText();
         }
         int orderQty = Integer.parseInt(txtQty.getText());
+        int orderStatus = Burger.PROCESSING;
 
         if (customerId.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your phone number...");
-        } else if (!burgerCollection.isValidPhoneNumber(customerId)) {
+        } else if (!burgerList.isValidPhoneNumber(customerId)) {
             JOptionPane.showMessageDialog(this, "Please enter your valid phone number...");
         } else if (customerName.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your name...");
         } else if (Integer.parseInt(txtQty.getText()) == 0 || Integer.parseInt(txtQty.getText()) < 0) {
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
         } else {
-            Burger customer = new Burger(orderId, customerId, customerName, orderQty, BurgerCollection.PROCESSING);
-            if (burgerCollection.addCustomer(customer)) {
-                JOptionPane.showMessageDialog(this, "Order placed successfully...");
-                clear();
+            Burger burger = new Burger(orderId, customerId, customerName, orderQty, orderStatus);
+            if (burgerList.placeOrder(burger)) {
+                try {
+                    FileWriter fileWriter = new FileWriter("Burger.txt",true);
+                    fileWriter.write(orderId + "," + customerId + "," + customerName + "," + orderQty + "," + orderStatus+"\n");
+                    fileWriter.flush();
+                    JOptionPane.showMessageDialog(this, "Order placed successfully...");
+                    clear();
+                } catch (IOException ex) {
+
+                }
             }
         }
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
@@ -331,7 +341,7 @@ public class PlaceOrder extends javax.swing.JFrame {
             return;
         }
 
-        price.setText("LKR " + (double) BurgerCollection.BURGER_PRICE * Integer.parseInt(qty));
+        price.setText("LKR " + (double) Burger.BURGER_PRICE * Integer.parseInt(qty));
     }//GEN-LAST:event_txtQtyKeyReleased
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
@@ -343,8 +353,8 @@ public class PlaceOrder extends javax.swing.JFrame {
             return;
         }
 
-        if (burgerCollection.isValidPhoneNumber(customerId) && burgerCollection.isDuplicateCustomer(customerId)) {
-            txtCustomerName.setText(burgerCollection.getDuplicateCustomerName(customerId));
+        if (burgerList.isValidPhoneNumber(customerId) && burgerList.isDuplicateCustomer(customerId)) {
+            txtCustomerName.setText(burgerList.getDuplicateCustomerName(customerId));
             txtCustomerName.setEditable(false);
         } else {
             txtCustomerName.setText("");
@@ -353,12 +363,12 @@ public class PlaceOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCustomerIdKeyReleased
 
     private void btnQtyDecreaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQtyDecreaseActionPerformed
-        String qtyText=txtQty.getText();
-        if(qtyText.isEmpty()){
+        String qtyText = txtQty.getText();
+        if (qtyText.isEmpty()) {
             txtQty.setText("1");
-        }else{
-            int qty=Integer.parseInt(qtyText);
-            if (qty>1) {
+        } else {
+            int qty = Integer.parseInt(qtyText);
+            if (qty > 1) {
                 qty--;
             }
             txtQty.setText(String.valueOf(qty));
@@ -367,11 +377,11 @@ public class PlaceOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQtyDecreaseActionPerformed
 
     private void btnQtyIncreaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQtyIncreaseActionPerformed
-        String qtyText=txtQty.getText();
-        if(qtyText.isEmpty()){
+        String qtyText = txtQty.getText();
+        if (qtyText.isEmpty()) {
             txtQty.setText("1");
-        }else{
-            int qty=Integer.parseInt(qtyText);
+        } else {
+            int qty = Integer.parseInt(qtyText);
             qty++;
             txtQty.setText(String.valueOf(qty));
         }
@@ -403,7 +413,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void clear() {
-        txtOrderId.setText(burgerCollection.generateOrderId());
+        txtOrderId.setText(burgerList.generateOrderId());
         txtCustomerId.setText("");
         txtCustomerName.setText("");
         price.setText("LKR 500.0");
@@ -412,11 +422,11 @@ public class PlaceOrder extends javax.swing.JFrame {
 
     private void updateTotal() {
         String qtyText = txtQty.getText();
-        if(qtyText.isEmpty()){
+        if (qtyText.isEmpty()) {
             price.setText("LKR --");
             return;
         }
-        int qty=Integer.parseInt(qtyText);
-        price.setText("LKR "+(double)qty*BurgerCollection.BURGER_PRICE);
+        int qty = Integer.parseInt(qtyText);
+        price.setText("LKR " + (double) qty * Burger.BURGER_PRICE);
     }
 }

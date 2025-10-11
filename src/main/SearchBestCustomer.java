@@ -4,21 +4,20 @@ import javax.swing.table.DefaultTableModel;
 
 public class SearchBestCustomer extends javax.swing.JFrame {
 
-    private BurgerCollection burgerCollection;
+    private List burgerList;
 
-    public SearchBestCustomer(BurgerCollection burgerCollection) {
+    public SearchBestCustomer(List burgerList) {
         initComponents();
-        this.burgerCollection = burgerCollection;
+        this.burgerList = burgerList;
         loadBestCustomerData();
     }
 
     private void loadBestCustomerData() {
-
-        Burger[] burgers = burgerCollection.toArray();
+        Burger[] burgers = burgerList.toArray();
         Burger[] bestCustomers = new Burger[0];
 
         for (int i = 0; i < burgers.length; i++) {
-            if (!burgerCollection.searchDuplicateCustomers(bestCustomers, burgers[i].getCustomerId())) {
+            if (!burgerList.searchDuplicateCustomers(bestCustomers, burgers[i].getCustomerId())) {
                 Burger[] temp = new Burger[bestCustomers.length + 1];
                 for (int j = 0; j < bestCustomers.length; j++) {
                     temp[j] = bestCustomers[j];
@@ -56,7 +55,7 @@ public class SearchBestCustomer extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) bestCustomerTable.getModel();
         dtm.setRowCount(0);
         for (Burger burger : bestCustomers) {
-            Object[] rowData = {burger.getCustomerId(), burger.getCustomerName(), (double) burger.getOrderQty() * BurgerCollection.BURGER_PRICE};
+            Object[] rowData = {burger.getCustomerId(), burger.getCustomerName(), (double) burger.getOrderQty() * Burger.BURGER_PRICE};
             dtm.addRow(rowData);
         }
     }
@@ -182,7 +181,7 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
-        new Search(burgerCollection).setVisible(true);
+        new Search(burgerList).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
