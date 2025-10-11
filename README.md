@@ -3,7 +3,59 @@
 <div align="center">
 
 ![Java](https://img.shields.io/badge/Java_11-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Swing](https://img.shields.io/badge/Swing-GUI-orange?style=for-the-badge&logo=java&logoColor=white)
+![Swing](https://img.shields├── 📄 README.md                         # Proje### 📋 **Key Components**
+
+| Component | Description | Type |
+|-----------|-------------|------|
+| `Burger.ja- ✅ Complex data structure operations hidden
+- ✅ User-friendly public interface
+- ✅ Implementation details concealed
+- ✅ Dynamic array resizing with load factor (50% expansion)
+- ✅ File I/O abstraction for data persistence
+
+### 🎯 **Composition**
+```java
+// HomePage contains List instance
+public class HomePage extends JFrame {
+    private List burgerList;
+    
+    public HomePage(List burgerList) {
+        this.burgerList = burgerList;data model with status constants | Model |
+| `List.java` | Dynamic array with file I/O & business logic | Controller |
+| `Burger.txt` | CSV file for data persistence | Data Storage |
+| `HomePage.java` | Main application entry point & dashboard | View |
+| `PlaceOrder.java` | Order creation form with validation | View |
+| `Search*.java` | Search & analytics interfaces | View |
+| `*Orders.java` | Status-specific order views | View |
+
+### 🔢 **Status Constants**
+```java
+// Defined in Burger.java
+public static final int CANCEL = 0;      // Cancelled orders
+public static final int PROCESSING = 1;  // Active/Processing orders  
+public static final int DELIVERED = 500; // Completed/Delivered orders
+public static final int BURGER_PRICE = 500; // LKR per burger
+```
+
+### 📂 **Data Persistence**
+Orders are stored in `Burger.txt` in CSV format:
+```csv
+B0001,0712345678,Pasindu,10,1
+B0002,0712345687,Imalka,5,1
+orderId,phoneNumber,customerName,quantity,status
+```
+- File is loaded on application startup using `List.loadDataFromFile("Burger.txt")`
+- Orders persist between application sessionstation
+├── 📄 LICENSE                           # MIT License
+├── 📄 .gitignore                       # Git ignore patterns
+├── 📄 build.xml                        # Ant build configuration
+├── 📄 manifest.mf                      # JAR manifest
+├── 📄 Burger.txt                       # Order data persistence file (CSV format)
+│
+├── 📁 src/main/                        # Source code directory
+│   ├── 🍔 Burger.java                 # Core order model class with constants
+│   ├── 📦 List.java                   # Dynamic array data structure & business logic
+│   ├── 🏠 HomePage.java/.form         # Main application dashboard & entry pointSwing-GUI-orange?style=for-the-badge&logo=java&logoColor=white)
 ![FlatLaf](https://img.shields.io/badge/FlatLaf-3.6.1-blue?style=for-the-badge)
 ![NetBeans](https://img.shields.io/badge/NetBeans-IDE-1B6AC6?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
@@ -212,8 +264,8 @@ OOP-Swing-iHungry-BurgerShop/
 ├── 📄 manifest.mf                      # JAR manifest
 │
 ├── 📁 src/main/                        # Source code directory
-│   ├── 🍔 Burger.java                 # Core order model class
-│   ├── 📦 BurgerCollection.java       # Collection management & business logic
+│   ├── 🍔 Burger.java                 # Core order model class with constants
+│   ├── 📦 List.java                   # Dynamic array data structure & business logic
 │   ├── � HomePage.java/.form         # Main application dashboard
 │   ├── � PlaceOrder.java/.form       # Order creation interface
 │   ├── �️ ViewOrders.java/.form       # Order viewing with status filters
@@ -314,14 +366,17 @@ public class Burger {
 
 ### 🏗️ **Abstraction**
 ```java
-// BurgerCollection - Complex operations simplified
-public class BurgerCollection {
-    private Burger[] burgers = new Burger[0];
+// List class - Complex operations simplified
+public class List {
+    private Burger[] burgerList;
+    private int nextIndex;
+    private double loadFact;
     
     // Abstract complex array management
-    private void extendburgerArray() { /*...*/ }
+    private void extendsArray() { /*...*/ }
     public String generateOrderId() { /*...*/ }
-    public boolean addCustomer(Burger customer) { /*...*/ }
+    public boolean placeOrder(Burger burger) { /*...*/ }
+    public void loadDataFromFile(String fileName) { /*...*/ }
 }
 ```
 - ✅ Complex data structure operations hidden
@@ -341,21 +396,26 @@ public class HomePage extends JFrame {
 ```
 - ✅ "Has-a" relationships between classes
 - ✅ Component-based architecture
-- ✅ Shared state management
+- ✅ Shared state management across all views
 
 ### 📋 **Design Patterns**
 
 #### **Model-View Pattern**
-- **Model**: `Burger`, `BurgerCollection` (data and business logic)
-- **View**: `HomePage`, `PlaceOrder`, `Search*` (UI components)
+- **Model**: `Burger` (data model), `List` (data structure & business logic)
+- **View**: `HomePage`, `PlaceOrder`, `Search*`, `*Orders` (UI components)
 - Clear separation of concerns
+
+#### **Data Structure Design**
+- Custom dynamic array implementation with load factor
+- Automatic resizing when capacity reached
+- Efficient memory management
 
 #### **Event-Driven Programming**
 ```java
 // Button event handlers in GUI classes
 private void btnPlaceOrderActionPerformed(ActionEvent evt) {
     this.dispose();
-    new PlaceOrder(burgerCollection).setVisible(true);
+    new PlaceOrder(burgerList).setVisible(true);
 }
 ```
 - ✅ Observer pattern with Swing event listeners
@@ -366,7 +426,7 @@ private void btnPlaceOrderActionPerformed(ActionEvent evt) {
 
 ### 💰 **Pricing System**
 ```java
-// Fixed burger price defined in BurgerCollection
+// Fixed burger price defined in Burger.java
 public static final int BURGER_PRICE = 500; // LKR
 
 // Dynamic total calculation
@@ -375,31 +435,57 @@ Total = Quantity × 500 LKR
 
 ### 🆔 **Order ID Generation**
 ```java
-// Sequential auto-generated IDs
+// Sequential auto-generated IDs in List.java
 B0001 → B0002 → B0003 → B0004 ...
 
 // Format: B + 4-digit zero-padded number
+public String generateOrderId() {
+    if (nextIndex == 0) return "B0001";
+    String lastOrderId = burgerList[nextIndex - 1].getOrderId();
+    int lastOrderIdNum = Integer.parseInt(lastOrderId.substring(1));
+    return String.format("B%04d", lastOrderIdNum + 1);
+}
 ```
 
 ### 📱 **Phone Validation Rules**
 ```java
+// Implemented in List.isValidPhoneNumber()
 ✅ Must be exactly 10 digits
 ✅ Must start with 0
 ✅ Only numeric characters allowed
-✅ Format: 0XXXXXXXXX
+✅ Format: 0XXXXXXXXX (Sri Lankan phone number format)
 ```
 
 ### 📈 **Order Status Flow**
 ```
-[PROCESSING (1)] → [DELIVERED (2)]
+[PROCESSING (1)] → [DELIVERED (500)]
        ↓
   [CANCELLED (0)]
 ```
+**Note**: DELIVERED status is uniquely set to `500` (same as BURGER_PRICE) in this implementation.
+
+### 🔢 **Status Constants (from Burger.java)**
+```java
+public static final int CANCEL = 0;      // Cancelled orders
+public static final int PROCESSING = 1;  // Active orders
+public static final int DELIVERED = 500; // Completed orders
+```
 
 ### 👥 **Customer Management**
-- Duplicate phone number detection
-- Automatic name retrieval for returning customers
+- Duplicate phone number detection (`isDuplicateCustomer()`)
+- Automatic name retrieval for returning customers (`getDuplicateCustomerName()`)
 - Order history tracking per customer
+- CSV file persistence for data storage
+
+### 📂 **Data Persistence**
+```java
+// Load orders from file on startup
+List burgerList = new List(100, 0.5);
+burgerList.loadDataFromFile("Burger.txt");
+
+// CSV Format: orderId,phone,name,qty,status
+// Example: B0001,0712345678,Pasindu,10,1
+```
 
 ---
 
