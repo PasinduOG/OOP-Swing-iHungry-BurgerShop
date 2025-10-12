@@ -305,9 +305,6 @@ public class UpdateOrder extends javax.swing.JFrame {
         } else {
             customer.setOrderQty(qty);
             customer.setOrderStatus(status);
-            if (status == Burger.CANCEL) {
-                customer.setOrderQty(0);
-            }
             try {
                 FileWriter fileWriter = new FileWriter("Burger.txt"); 
                 Burger[] burgerArr = burgerList.toArray();

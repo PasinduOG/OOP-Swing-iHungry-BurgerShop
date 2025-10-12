@@ -313,18 +313,23 @@ public class PlaceOrder extends javax.swing.JFrame {
         } else if (Integer.parseInt(txtQty.getText()) == 0 || Integer.parseInt(txtQty.getText()) < 0) {
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
         } else {
-            Burger burger = new Burger(orderId, customerId, customerName, orderQty, orderStatus);
-            if (burgerList.placeOrder(burger)) {
-                try {
-                    FileWriter fileWriter = new FileWriter("Burger.txt",true);
-                    fileWriter.write(orderId + "," + customerId + "," + customerName + "," + orderQty + "," + orderStatus+"\n");
-                    fileWriter.flush();
-                    JOptionPane.showMessageDialog(this, "Order placed successfully...");
-                    clear();
-                } catch (IOException ex) {
 
+            int b = JOptionPane.showConfirmDialog(this, "Do you want to place this order?", "Order Confirmation", JOptionPane.YES_NO_OPTION);
+            if (b == JOptionPane.YES_OPTION) {
+                Burger burger = new Burger(orderId, customerId, customerName, orderQty, orderStatus);
+                if (burgerList.placeOrder(burger)) {
+                    try {
+                        FileWriter fileWriter = new FileWriter("Burger.txt", true);
+                        fileWriter.write(orderId + "," + customerId + "," + customerName + "," + orderQty + "," + orderStatus + "\n");
+                        fileWriter.flush();
+                        JOptionPane.showMessageDialog(this, "Order placed successfully...");
+                        clear();
+                    } catch (IOException ex) {
+
+                    }
                 }
             }
+
         }
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 

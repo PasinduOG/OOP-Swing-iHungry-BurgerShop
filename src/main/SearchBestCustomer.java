@@ -18,17 +18,19 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
         for (int i = 0; i < burgers.length; i++) {
             if (!burgerList.searchDuplicateCustomers(bestCustomers, burgers[i].getCustomerId())) {
-                Burger[] temp = new Burger[bestCustomers.length + 1];
-                for (int j = 0; j < bestCustomers.length; j++) {
-                    temp[j] = bestCustomers[j];
+                if (burgers[i].getOrderStatus() != Burger.CANCEL) {
+                    Burger[] temp = new Burger[bestCustomers.length + 1];
+                    for (int j = 0; j < bestCustomers.length; j++) {
+                        temp[j] = bestCustomers[j];
+                    }
+                    bestCustomers = temp;
+                    bestCustomers[bestCustomers.length - 1]
+                            = new Burger(burgers[i].getOrderId(),
+                                    burgers[i].getCustomerId(),
+                                    burgers[i].getCustomerName(),
+                                    burgers[i].getOrderQty(),
+                                    burgers[i].getOrderStatus());
                 }
-                bestCustomers = temp;
-                bestCustomers[bestCustomers.length - 1] = 
-                        new Burger(burgers[i].getOrderId(), 
-                                burgers[i].getCustomerId(), 
-                                burgers[i].getCustomerName(), 
-                                burgers[i].getOrderQty(), 
-                                burgers[i].getOrderStatus());
             }
         }
 

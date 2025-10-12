@@ -62,23 +62,25 @@ Complete burger shop management system featuring:
 ## ✨ Key Features
 
 ### 🏠 **Core Functionality**
-- ✅ **Place Order**: Create new burger orders with customer validation
-- ✅ **View Orders**: Browse and filter orders by status
-- ✅ **Update Order**: Modify existing order quantities and details
+- ✅ **Place Order**: Create new burger orders with customer validation and confirmation dialog
+- ✅ **View Orders**: Browse and filter orders by status (read-only tables)
+- ✅ **Update Order**: Modify existing order quantities and status
 - ✅ **Order Status Tracking**: 
   - 🔄 Processing Orders (Status: 1)
-  - ✅ Delivered Orders (Status: 500)
+  - ✅ Delivered Orders (Status: 2 or 500)
   - ❌ Cancelled Orders (Status: 0)
 - ✅ **Search System**:
   - 🔍 Search by Order ID
   - 👤 Search by Customer Phone
-  - 🏆 Best Customer Analytics
+  - 🏆 Best Customer Analytics (excludes cancelled orders)
 
 ### 🎨 **User Interface**
 - 🖥️ **Modern GUI**: FlatMac Light theme for contemporary appearance
 - 🎯 **Intuitive Navigation**: Clean button-based menu system
 - 📱 **Responsive Layout**: NetBeans Form Designer generated layouts
 - 🍔 **Branded Design**: Custom burger icon and themed colors
+- 🔒 **Data Protection**: Read-only tables prevent accidental edits
+- ✅ **Confirmation Dialogs**: Order placement confirmation for user safety
 - ⚡ **Real-time Updates**: Dynamic price calculation and form validation
 
 ### 🏗️ **Technical Features**
@@ -341,10 +343,12 @@ public class HomePage extends JFrame {
 
 ### 📈 **Order Status Flow**
 ```
-[PROCESSING (1)] → [DELIVERED (500)]
+[PROCESSING (1)] → [DELIVERED (2/500)]
        ↓
   [CANCELLED (0)]
 ```
+
+**Note**: The system supports flexible delivered status codes (2 or 500) for different delivery scenarios.
 
 ---
 
@@ -415,8 +419,14 @@ See [LICENSE](LICENSE) file for details.
 
 **Tags:** java | swing | gui | oop | desktop-application | burger-shop | netbeans | flatlaf | education
 
-📅 **Last Updated**: October 2025  
+📅 **Last Updated**: October 12, 2025  
 ⭐ **Project Status**: Active & Complete  
 🎓 **Purpose**: Educational & Portfolio
+
+### 🆕 Recent Updates
+- ✅ Added order confirmation dialog for safer order placement
+- 🔒 Made all order tables read-only to prevent accidental data modification
+- 🏆 Enhanced best customer analytics to exclude cancelled orders
+- 🔄 Improved order update workflow with flexible status handling
 
 </div>
