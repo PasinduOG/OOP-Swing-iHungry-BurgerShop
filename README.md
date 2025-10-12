@@ -80,8 +80,9 @@ Complete burger shop management system featuring:
 - 📱 **Responsive Layout**: NetBeans Form Designer generated layouts
 - 🍔 **Branded Design**: Custom burger icon and themed colors
 - 🔒 **Data Protection**: Read-only tables prevent accidental edits
-- ✅ **Confirmation Dialogs**: Order placement confirmation for user safety
+- ✅ **Confirmation Dialogs**: Order placement, order updates, and application exit confirmations
 - ⚡ **Real-time Updates**: Dynamic price calculation and form validation
+- 🎯 **User Experience**: Thank you messages and intuitive feedback system
 
 ### 🏗️ **Technical Features**
 - 🧩 **Pure OOP Design**: Encapsulation, abstraction, and composition patterns
@@ -211,7 +212,12 @@ lib/
    - View Processing Orders (Status: 1)
    - View Delivered Orders (Status: 500)
    - View Cancelled Orders (Status: 0)
-   - Update order quantities and details
+   - Update order quantities and details with confirmation dialog
+
+6. **🚪 Exiting Application**
+   - Confirmation dialog before closing
+   - Thank you message display
+   - Safe application termination
 
 
 ---
@@ -424,9 +430,10 @@ See [LICENSE](LICENSE) file for details.
 🎓 **Purpose**: Educational & Portfolio
 
 ### 🆕 Recent Updates
-- ✅ Added order confirmation dialog for safer order placement
+- ✅ Added confirmation dialogs for order placement, order updates, and application exit
 - 🔒 Made all order tables read-only to prevent accidental data modification
 - 🏆 Enhanced best customer analytics to exclude cancelled orders
 - 🔄 Improved order update workflow with flexible status handling
+- 🎯 Added thank you message when exiting application for better user experience
 
 </div>
