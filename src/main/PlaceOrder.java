@@ -301,7 +301,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         } else {
             customerName = txtCustomerName.getText();
         }
-        int orderQty = Integer.parseInt(txtQty.getText());
+        String orderQty = txtQty.getText();
         int orderStatus = Burger.PROCESSING;
 
         if (customerId.isEmpty()) {
@@ -310,13 +310,15 @@ public class PlaceOrder extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter your valid phone number...");
         } else if (customerName.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your name...");
+        } else if (orderQty.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Quantity cannot be empty value...");
         } else if (Integer.parseInt(txtQty.getText()) == 0 || Integer.parseInt(txtQty.getText()) < 0) {
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
         } else {
 
             int b = JOptionPane.showConfirmDialog(this, "Do you want to place this order?", "Order Confirmation", JOptionPane.YES_NO_OPTION);
             if (b == JOptionPane.YES_OPTION) {
-                Burger burger = new Burger(orderId, customerId, customerName, orderQty, orderStatus);
+                Burger burger = new Burger(orderId, customerId, customerName, Integer.parseInt(orderQty), orderStatus);
                 if (burgerList.placeOrder(burger)) {
                     try {
                         FileWriter fileWriter = new FileWriter("Burger.txt", true);
@@ -341,8 +343,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         String qty = txtQty.getText();
 
         if (qty.isEmpty() || qty.equals("0")) {
-            price.setText("LKR 500.0");
-            txtQty.setText("1");
+            price.setText("LKR 0.0");
             return;
         }
 

@@ -192,7 +192,11 @@ public class HomePage extends JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        System.exit(0);
+        int b = JOptionPane.showConfirmDialog(this, "Do you want to exit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION);
+            if (b == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this, "Thank you for using iHungry Burgers...");
+                System.exit(0);
+            }
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnViewOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersActionPerformed

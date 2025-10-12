@@ -4,7 +4,7 @@ public class Burger {
     public static final int BURGER_PRICE = 500;
     public static final int CANCEL = 0;
     public static final int PROCESSING = 1;
-    public static final int DELIVERED = 500;
+    public static final int DELIVERED = 2;
     
     private String orderId;
     private String customerId;

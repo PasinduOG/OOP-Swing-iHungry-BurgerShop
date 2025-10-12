@@ -297,30 +297,33 @@ public class UpdateOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOrderIdKeyReleased
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
-        int qty = Integer.parseInt(txtQty.getText());
+        String qty = txtQty.getText();
         int status = orderStatusComboBox.getSelectedIndex();
 
-        if (qty < 1) {
+        if (qty.isEmpty() || Integer.parseInt(qty) < 1) {
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
         } else {
-            customer.setOrderQty(qty);
-            customer.setOrderStatus(status);
-            try {
-                FileWriter fileWriter = new FileWriter("Burger.txt"); 
-                Burger[] burgerArr = burgerList.toArray();
-                for (Burger burger : burgerArr) {
-                    fileWriter.write(burger.getOrderId() + "," + burger.getCustomerId() + ","
-                            + burger.getCustomerName() + "," + burger.getOrderQty() + ","
-                            + burger.getOrderStatus() + "\n");
-                }
-                fileWriter.flush();
-                fileWriter.close();
-                JOptionPane.showMessageDialog(this, "Order updated successfully...");
-                clear();
-            } catch (IOException ex) {
-                
-            }
 
+            int b = JOptionPane.showConfirmDialog(this, "Do you want to update this order?", "Order Update Confirmation", JOptionPane.YES_NO_OPTION);
+            if (b == JOptionPane.YES_OPTION) {
+                customer.setOrderQty(Integer.parseInt(qty));
+                customer.setOrderStatus(status);
+                try {
+                    FileWriter fileWriter = new FileWriter("Burger.txt");
+                    Burger[] burgerArr = burgerList.toArray();
+                    for (Burger burger : burgerArr) {
+                        fileWriter.write(burger.getOrderId() + "," + burger.getCustomerId() + ","
+                                + burger.getCustomerName() + "," + burger.getOrderQty() + ","
+                                + burger.getOrderStatus() + "\n");
+                    }
+                    fileWriter.flush();
+                    fileWriter.close();
+                    JOptionPane.showMessageDialog(this, "Order updated successfully...");
+                    clear();
+                } catch (IOException ex) {
+
+                }
+            }
         }
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
 
@@ -328,8 +331,7 @@ public class UpdateOrder extends javax.swing.JFrame {
         String qty = txtQty.getText();
 
         if (qty.isEmpty() || qty.equals("0")) {
-            price.setText("LKR 500.0");
-            txtQty.setText("1");
+            price.setText("LKR 0.0");
             return;
         }
 
