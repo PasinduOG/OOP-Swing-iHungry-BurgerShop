@@ -72,7 +72,7 @@ Complete burger shop management system featuring:
 - ✅ **Search System**:
   - 🔍 Search by Order ID
   - 👤 Search by Customer Phone
-  - 🏆 Best Customer Analytics (excludes cancelled orders)
+  - 🏆 Best Customer Analytics (excludes cancelled orders from customer list and quantity calculations)
 
 ### 🎨 **User Interface**
 - 🖥️ **Modern GUI**: FlatMac Light theme for contemporary appearance
@@ -425,14 +425,15 @@ See [LICENSE](LICENSE) file for details.
 
 **Tags:** java | swing | gui | oop | desktop-application | burger-shop | netbeans | flatlaf | education
 
-📅 **Last Updated**: October 12, 2025  
+📅 **Last Updated**: October 17, 2025  
 ⭐ **Project Status**: Active & Complete  
 🎓 **Purpose**: Educational & Portfolio
 
 ### 🆕 Recent Updates
+- 🐛 **Fixed** cancelled order quantity calculation bug in best customer analytics (Oct 17, 2025)
 - ✅ Added confirmation dialogs for order placement, order updates, and application exit
 - 🔒 Made all order tables read-only to prevent accidental data modification
-- 🏆 Enhanced best customer analytics to exclude cancelled orders
+- 🏆 Enhanced best customer analytics to exclude cancelled orders from both list and quantity totals
 - 🔄 Improved order update workflow with flexible status handling
 - 🎯 Added thank you message when exiting application for better user experience
 
