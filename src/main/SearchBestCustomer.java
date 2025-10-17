@@ -38,7 +38,9 @@ public class SearchBestCustomer extends javax.swing.JFrame {
             int qty = 0;
             for (int j = 0; j < burgers.length; j++) {
                 if (burgers[j].getCustomerId().equalsIgnoreCase(bestCustomers[i].getCustomerId())) {
-                    qty += burgers[j].getOrderQty();
+                    if(burgers[j].getOrderStatus() != Burger.CANCEL){
+                        qty += burgers[j].getOrderQty();
+                    }
                 }
             }
             bestCustomers[i].setOrderQty(qty);
