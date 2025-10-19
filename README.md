@@ -83,6 +83,7 @@ Complete burger shop management system featuring:
 - ✅ **Confirmation Dialogs**: Order placement, order updates, and application exit confirmations
 - ⚡ **Real-time Updates**: Dynamic price calculation and form validation
 - 🎯 **User Experience**: Thank you messages and intuitive feedback system
+- 🎨 **Color-Coded Status**: Visual indicators for order status (red for cancelled, green for delivered)
 
 ### 🏗️ **Technical Features**
 - 🧩 **Pure OOP Design**: Encapsulation, abstraction, and composition patterns
@@ -425,16 +426,20 @@ See [LICENSE](LICENSE) file for details.
 
 **Tags:** java | swing | gui | oop | desktop-application | burger-shop | netbeans | flatlaf | education
 
-📅 **Last Updated**: October 17, 2025  
+📅 **Last Updated**: October 19, 2025  
 ⭐ **Project Status**: Active & Complete  
 🎓 **Purpose**: Educational & Portfolio
 
 ### 🆕 Recent Updates
+- 🎨 **Enhanced UI** with color-coded order status display in search screens (Oct 19, 2025)
+  - 🔴 Red text for cancelled orders
+  - 🟢 Green text for delivered orders
+  - ⚫ Black text for processing orders
 - 🐛 **Fixed** cancelled order quantity calculation bug in best customer analytics (Oct 17, 2025)
+- 🎯 Improved UI layout and alignment in search customer and search order forms
 - ✅ Added confirmation dialogs for order placement, order updates, and application exit
 - 🔒 Made all order tables read-only to prevent accidental data modification
 - 🏆 Enhanced best customer analytics to exclude cancelled orders from both list and quantity totals
 - 🔄 Improved order update workflow with flexible status handling
-- 🎯 Added thank you message when exiting application for better user experience
 
 </div>

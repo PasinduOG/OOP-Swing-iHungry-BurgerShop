@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Color;
+
 public class SearchOrder extends javax.swing.JFrame {
 
     private List burgerList;
@@ -68,7 +70,7 @@ public class SearchOrder extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Customer ID :");
 
-        customerIdLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        customerIdLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         customerIdLabel.setForeground(new java.awt.Color(0, 0, 0));
         customerIdLabel.setText("--");
 
@@ -76,7 +78,7 @@ public class SearchOrder extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Name :");
 
-        customerNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        customerNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         customerNameLabel.setForeground(new java.awt.Color(0, 0, 0));
         customerNameLabel.setText("--");
 
@@ -84,7 +86,7 @@ public class SearchOrder extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("QTY :");
 
-        orderQtyLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        orderQtyLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         orderQtyLabel.setForeground(new java.awt.Color(0, 0, 0));
         orderQtyLabel.setText("--");
 
@@ -93,15 +95,15 @@ public class SearchOrder extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Total :");
 
-        orderTotalLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        orderTotalLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         orderTotalLabel.setForeground(new java.awt.Color(0, 0, 0));
         orderTotalLabel.setText("LKR --");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Order Status");
+        jLabel12.setText("Order Status :");
 
-        orderStatusLabel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        orderStatusLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         orderStatusLabel.setForeground(new java.awt.Color(0, 0, 0));
         orderStatusLabel.setText("--");
 
@@ -129,26 +131,22 @@ public class SearchOrder extends javax.swing.JFrame {
                 .addGap(99, 99, 99)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(customerIdLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(customerNameLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(orderQtyLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(orderTotalLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(orderStatusLabel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(orderStatusLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(orderTotalLabel)
+                            .addComponent(orderQtyLabel)
+                            .addComponent(customerNameLabel)
+                            .addComponent(customerIdLabel))))
+                .addContainerGap(534, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,6 +221,7 @@ public class SearchOrder extends javax.swing.JFrame {
             orderQtyLabel.setText("--");
             orderTotalLabel.setText("LKR --");
             orderStatusLabel.setText("--");
+            orderStatusLabel.setForeground(Color.BLACK);
         } else {
             Burger burger = burgerList.searchOrder(orderId);
             if (burger == null) {
@@ -231,11 +230,17 @@ public class SearchOrder extends javax.swing.JFrame {
                 orderQtyLabel.setText("--");
                 orderTotalLabel.setText("LKR --");
                 orderStatusLabel.setText("--");
+                orderStatusLabel.setForeground(Color.BLACK);
             } else {
                 customerIdLabel.setText(burger.getCustomerId());
                 customerNameLabel.setText(burger.getCustomerName());
                 orderQtyLabel.setText(String.valueOf(burger.getOrderQty()));
                 orderTotalLabel.setText("LKR " + String.valueOf((double) burger.getOrderQty() * Burger.BURGER_PRICE));
+                if(burger.getOrderStatus()==Burger.CANCEL){
+                    orderStatusLabel.setForeground(Color.red);
+                }else if(burger.getOrderStatus()==Burger.DELIVERED){
+                    orderStatusLabel.setForeground(Color.decode("#35980E"));
+                }
                 orderStatusLabel.setText(burgerList.getStatusNameById(burger.getOrderStatus()));
             }
         }
